@@ -1,0 +1,10 @@
+{
+  "brand": "HIZVENA",
+  "tagline": "KEEP BECOMING.",
+  "requested_domain": "hizvena.com",
+  "www_alias": "www.hizvena.com",
+  "domain_status": "requested_not_verified_or_connected",
+  "hosting_target": "Cloudflare Pages",
+  "source_repository": "zry23/HIZVENA",
+  "notice": "This configuration records the owner's intended domain only. It does not buy, verify, activate, or route the domain. Do not add canonical tags or redirect until ownership and DNS are verified."
+}
