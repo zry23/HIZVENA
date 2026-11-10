@@ -22,5 +22,8 @@ Database lama HIZVENA sudah berhasil dipulihkan dari storage Floot ke folder `da
 ## Batasan
 Tidak menampilkan komisi internal, nomor rekening, data pelanggan, testimoni fiktif, atau klaim afiliasi kampus. Konten akademik adalah konsultasi, review, dan latihan — bukan penggantian pengerjaan tugas/ujian.
 
+## Desain V4
+Landing page memakai tema edtech premium, foto diskusi mahasiswa natural (sementara ditautkan dari penyimpanan Floot), navbar sticky, pita identitas brand, tiga manfaat, kartu jalur UT/PTN/PTS, pencarian yang terhubung ke dataset historis, form identitas pemesan, katalog, galeri testimoni kosong, FAQ dan CTA mobile. Berkas tambahan: `assets/design-v4.css`.
+
 ## Pemeliharaan
 Edit berkas melalui GitHub/ChatGPT, lakukan preview, lalu deploy melalui integrasi Cloudflare Pages setelah user menyetujui.
