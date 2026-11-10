@@ -15,7 +15,7 @@
 #consultForm button[type=submit]{margin-top:4px}
 #consultForm .selection-summary{border-radius:16px}
 #consultForm .form-notice{font-size:12px;color:#5a647e}
-.hero .photo.photo-natural{background:linear-gradient(0deg,rgba(8,14,43,.86),rgba(8,14,43,.02) 60%),url('https://hizvena-catalog-2026.floot.app/_cdn/static/194c2637-8cc9-44d6-98c4-c05f01265cb1-hizvena-hero-natural-campus.png') center 39%/cover no-repeat,#16264e}
+.hero .photo.photo-natural{background:linear-gradient(0deg,rgba(8,14,43,.86),rgba(8,14,43,.02) 60%),url('./hero-campus-natural.jpg') center 39%/cover no-repeat,#16264e}
 .photo.photo-natural:before,.photo.photo-natural:after{display:none}
 .photo.photo-natural b{font-size:clamp(23px,2.4vw,32px);text-shadow:0 2px 15px #0007}
 .photo.photo-natural em:last-child{display:none}
