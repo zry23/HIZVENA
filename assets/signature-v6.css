@@ -1,0 +1,35 @@
+/* HIZVENA • Signature Redesign V6 / hizvena.com target */
+:root{--hv-violet:#7353ed;--hv-ink:#101a36;--hv-border:#e9e7f3}
+body{font-family:Inter,"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif}
+header{border-bottom:1px solid rgba(227,228,239,.85)}
+.nav{min-height:83px}.nav .brand{font-size:21px}.nav nav{gap:22px}.nav nav a:not(.btn){color:#38425c}.nav nav a:not(.btn):hover{color:var(--hv-violet)}
+.hero{background:radial-gradient(ellipse at 79% 17%,#eee7ff 0%,transparent 43%),linear-gradient(145deg,#fcfcff 15%,#f8f7ff 80%);padding:95px 0 107px}
+.heroGrid{grid-template-columns:1.05fr .95fr;gap:67px}.hero h1{font-size:clamp(43px,4.85vw,67px);letter-spacing:-3.2px;line-height:1.1;margin:22px 0 24px}
+.hero h1 span{background:linear-gradient(105deg,#7654f6,#5971ef);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{font-size:16.5px;line-height:1.82}
+.hero .photo.photo-natural{min-height:445px;border-radius:29px;background-position:center 42%;transform:rotate(.5deg);box-shadow:0 34px 75px #1b195a35}
+.hero-art:after{content:"";position:absolute;width:135px;height:135px;border-radius:35px;right:-31px;bottom:-30px;background:linear-gradient(130deg,#e7e3ff88,#dad1ff);z-index:-1;transform:rotate(15deg)}
+.hero .photo.photo-natural b{font-size:clamp(25px,2.5vw,34px);font-weight:780;max-width:340px;line-height:1.13}
+.hero .photo.photo-natural em:first-child{background:rgba(255,255,255,.2);border:1px solid #ffffff65}
+.hero-float{left:-26px;top:37px;background:#fffffff0}.pills{gap:8px}.pill{border-color:#e9e6f6;color:#52566f}
+.hero-microproof{display:flex;align-items:center;gap:11px;margin-top:26px;font-size:12.5px;font-weight:600;color:#525977}
+.hero-microproof .micro-icons{display:inline-flex;gap:0}.hero-microproof .micro-icons span{height:28px;width:28px;border:2px solid #fff;margin-right:-6px;border-radius:50%;display:grid;place-items:center;background:#ece7ff;color:#6855d5;font-size:13px}
+.highlight-ribbon{background:#101b38}.highlight-ribbon-inner{justify-content:center;gap:20px 65px}
+section{scroll-margin-top:90px}
+.benefit-grid{margin-top:24px}.benefit{position:relative;overflow:hidden}.benefit:after{content:"";position:absolute;right:-34px;top:-30px;width:88px;height:88px;border-radius:50%;background:#f1eeff}.benefit-icon{position:relative;z-index:1}
+#program .cards>.card{border:1px solid #e7e6f3;transition:transform .2s,box-shadow .2s}#program .cards>.card:hover{transform:translateY(-5px)}
+#program .cards>.card .btn{border-radius:11px}
+#program .form{position:relative;background:linear-gradient(180deg,#fff 0%,#fdfcff 100%);border-color:#e4e1f5;box-shadow:0 26px 72px #1c1b4e12}
+.form-progress-tag{background:#eae5ff;color:#5f43d6}
+#consultForm .contact-fields{border-radius:18px}
+#consultForm .selection-summary{border:1px solid #e1d9fc}
+#academicPrices .card,#designPrices .card{box-shadow:0 12px 30px #17215509}
+#academicPrices .card:hover,#designPrices .card:hover{border-color:#b9acf9}
+#testimoni .testimonial{background:repeating-linear-gradient(135deg,#f8f6ff,#f8f6ff 16px,#f4f0ff 16px,#f4f0ff 17px)}
+#testimoni .testimonial strong{color:#313357}
+#faq details summary{font-size:15.5px}#faq details[open]{box-shadow:0 9px 25px #3023610b}
+.final-cta{background:radial-gradient(circle at 84% 23%,#8b71fc55,transparent 45%),linear-gradient(125deg,#121e46,#6047d8);box-shadow:0 20px 55px #16174b25}
+.domain-target{display:inline-flex;padding:7px 12px;align-items:center;gap:7px;border:1px solid #dad5ff;background:#f3efff;border-radius:30px;color:#6151ca;font-size:12px;font-weight:750;letter-spacing:.01em}
+.domain-target::before{content:"●";font-size:9px;color:#8b79ec}
+@media(max-width:1000px){.heroGrid{gap:35px}.hero h1{font-size:clamp(43px,5vw,61px)}}
+@media(max-width:800px){.hero{padding:65px 0}.heroGrid{grid-template-columns:1fr}.hero .photo.photo-natural{transform:none;min-height:340px}.hero-float{top:16px;left:14px}.hero-art:after{right:-11px;bottom:-11px}}
+@media(max-width:580px){.hero h1{font-size:clamp(39px,10.8vw,50px);letter-spacing:-2px}.hero p{font-size:15px}.hero-microproof{margin-top:19px}.hero .photo.photo-natural{min-height:300px}.hero-art:after{display:none}.highlight-ribbon-inner{gap:5px 12px}.highlight-ribbon-inner>*{font-size:11px}.benefit-grid{gap:13px}.section-head h2{font-size:34px}.domain-target{font-size:11px}.final-cta{padding:34px 22px}}
