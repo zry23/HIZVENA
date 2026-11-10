@@ -3,7 +3,7 @@
 const form=document.getElementById('consultForm'); if(!form)return;
 const get=id=>document.getElementById(id);
 const fields=form.querySelector('.fields');
-const contact=document.createElement('div');contact.className='contact-fields';contact.innerHTML='<h4>Data pemesan</h4><p>Isi identitas untuk mempermudah konfirmasi melalui WhatsApp admin HIZVENA.</p><div class="fields"><label class="field">Nama lengkap pemesan <span class="required-label">*</span><input id="customerName" type="text" autocomplete="name" placeholder="Nama lengkap" minlength="2" maxlength="100" required></label><label class="field">Nomor WhatsApp pemesan <span class="required-label">*</span><input id="customerWhatsApp" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx atau +62xxxxxxxx" pattern="^(\\+?62|0)[0-9]{8,13}$" title="Gunakan nomor Indonesia, misalnya 081234567890 atau +628123456789" required></label></div>';
+const contact=document.createElement('div');contact.className='contact-fields';contact.innerHTML='<h4>Data pemesan</h4><p>Isi identitas untuk mempermudah konfirmasi melalui WhatsApp admin HIZVENA.</p><div class="fields"><label class="field">Nama lengkap pemesan <span class="required-label">*</span><input id="customerName" type="text" autocomplete="name" placeholder="Nama lengkap" minlength="2" maxlength="100" required></label><label class="field">Nomor WhatsApp pemesan <span class="required-label">*</span><input id="customerWhatsApp" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx atau +62xxxxxxxx" pattern="^(\+?62|0)[0-9]{8,13}$" title="Gunakan nomor Indonesia, misalnya 081234567890 atau +628123456789" required></label></div>';
 fields.insertAdjacentElement('beforebegin',contact);
 const campus=get('campus'),study=get('programStudy'),semester=get('semester'),course=get('course'),service=get('service');
 campus.required=true;study.required=true;semester.required=true;
@@ -16,7 +16,7 @@ const programList=document.createElement('div');programList.className='auto-resu
 campus.parentElement.appendChild(campusList);study.parentElement.appendChild(programList);
 const current={campus:null,program:null,mode:'UT'};
 let campuses=[],programs={},utCourses=[],loaded=false;
-const norm=s=>(s||'').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\\s+/g,' ').trim();
+const norm=s=>(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
 async function unzipJSON(path){const response=await fetch(path);if(!response.ok)throw new Error('Berkas data tidak tersedia: '+path);if(!('DecompressionStream' in window))throw new Error('Browser perlu mendukung DecompressionStream.');const stream=response.body.pipeThrough(new DecompressionStream('gzip'));return await new Response(stream).json();}
 async function loadCampus(){try{const [c,p]=await Promise.all([unzipJSON('./data/hizvena-indonesia-campus-directory.json.gz'),unzipJSON('./data/hizvena-indonesia-campus-programs.json.gz')]);campuses=c.universities||[];programs=p.programsByCampus||{};loaded=true;displayStatus();}catch(e){status.textContent='Direktori belum dapat dimuat pada browser ini. Nama kampus dan prodi tetap dapat diketik manual.';console.warn('HIZVENA campus:',e);}}
 async function loadUT(){try{const d=await unzipJSON('./data/hizvena-ut-s1-course-index-v2.json.gz');utCourses=d.courses||[];}catch(e){console.warn('HIZVENA UT:',e);}}
@@ -39,10 +39,10 @@ form.addEventListener('input',update);form.addEventListener('change',update);
 const btn=form.querySelector('button[type=submit]');if(btn)btn.textContent='Kirim rincian ke WhatsApp Admin ↗';
 form.addEventListener('submit',event=>{
 event.preventDefault();event.stopImmediatePropagation();
-const name=get('customerName').value.trim(),phone=get('customerWhatsApp').value.replace(/[\\s()-]/g,'');
+const name=get('customerName').value.trim(),phone=get('customerWhatsApp').value.replace(/[\s()-]/g,'');
 if(name.length<2){get('customerName').setCustomValidity('Masukkan nama lengkap pemesan.');get('customerName').reportValidity();return;}
 get('customerName').setCustomValidity('');
-if(!/^(?:\\+?62|0)[0-9]{8,13}$/.test(phone)){get('customerWhatsApp').setCustomValidity('Nomor WhatsApp Indonesia tidak valid.');get('customerWhatsApp').reportValidity();return;}
+if(!/^(?:\+?62|0)[0-9]{8,13}$/.test(phone)){get('customerWhatsApp').setCustomValidity('Nomor WhatsApp Indonesia tidak valid.');get('customerWhatsApp').reportValidity();return;}
 get('customerWhatsApp').setCustomValidity('');
 if(!form.reportValidity())return;
 const lines=[
@@ -59,7 +59,7 @@ const lines=[
 '',
 'Mohon konfirmasi ketersediaan layanan, harga final, dan langkah pemesanannya. Terima kasih!'
 ];
-const url='https://wa.me/6285169728694?text='+encodeURIComponent(lines.join('\\n'));window.location.href=url;
+const url='https://wa.me/6285169728694?text='+encodeURIComponent(lines.join('\n'));window.location.href=url;
 },true);
 get('customerName').addEventListener('input',()=>get('customerName').setCustomValidity(''));get('customerWhatsApp').addEventListener('input',()=>get('customerWhatsApp').setCustomValidity(''));
 handleMode();update();loadCampus();loadUT().then(displayStatus);
