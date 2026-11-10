@@ -1,11 +1,21 @@
-# HSP6 · HIZVENA internal dashboard — Design Preview
+# hizvena-internal · HSP6 Workspace
 
-This folder contains **only a visual demonstration** of the private HSP6 dashboard. All example clients, transactions, and balances are fictional.
+**Brand:** HIZVENA INTERNAL  
+**Project slug:** `hizvena-internal`  
+**Tagline:** KEEP BECOMING.
 
-Design palette: Midnight Navy `#0B1020`, Electric Violet `#7C5CFF`, Aurora Cyan `#35D6FF`, Cloud White `#F5F7FA`.
+This folder contains a **public-safe design preview only**, with fictional client, payment, and financial values. It is not the private application and is not a secure login portal.
 
-**Security notice:** This public repository must never contain internal passwords, real client records, authentication configuration, or business transaction data. The actual Google Apps Script app and its Google Sheets data are separate. Do not treat the preview as a secure login or production website.
+## Brand palette
+- Midnight Navy `#0B1020`
+- Electric Violet `#7C5CFF`
+- Aurora Cyan `#35D6FF`
+- Cloud White `#F5F7FA`
 
-HSP6 business allocation (illustration only): Hizry 70%, Rizki 30% of verified received payments net of refunds; operational expenses and tax are excluded from that calculation.
+## Status
+- Responsive design preview: committed to GitHub.
+- Private HSP6 Apps Script application: packaged separately, **not deployed**.
+- Google authentication & database: need Owner deployment, authorization and security validation.
+- `https://hizvena-internal.pages.dev` is a **proposed, not reserved or live**, address; Cloudflare static hosting alone does not provide private authentication/backend.
 
-Visual concept v1.2 · November 2026.
+**Confidentiality:** Never commit passwords, real client data, financial records, access tokens, or backend credentials to this public repository. Using Google Sheets Editor permissions for every member exposes the spreadsheet outside the application UI; do not use the prototype with sensitive business data until that is remedied.
