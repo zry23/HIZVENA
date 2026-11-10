@@ -34,3 +34,9 @@ Edit berkas melalui GitHub/ChatGPT, lakukan preview, lalu deploy melalui integra
 - Pola validasi nomor WhatsApp dan kewajiban kolom mata kuliah saat pindah jalur telah diperbaiki.
 - Percobaan pengujian browser headless tidak berhasil, sehingga tampilan dan interaksi WA masih harus diuji pada preview Cloudflare.
 - Jangan menayangkan data pelanggan atau catatan komisi internal di repo publik.
+
+## Domain utama yang diminta
+Target brand: **hizvena.com** dengan alias **www.hizvena.com**. Berkas `domain-target.json` merekam preferensi ini, tetapi tidak mengaktifkan domain. Diperlukan kepemilikan domain, proyek Cloudflare Pages yang berhasil dideploy, pengaturan Custom domains serta DNS/nameserver. Jangan memasang redirect atau canonical ke hizvena.com sebelum domain aktif.
+
+## Penyempurnaan desain V6
+`assets/signature-v6.css` memperhalus hero, hierarki tipografi, pencarian kampus, kartu layanan, CTA, foto mahasiswa, dan responsive layout. Arah desain orisinal HIZVENA; tidak menyalin aset Ruangguru.
