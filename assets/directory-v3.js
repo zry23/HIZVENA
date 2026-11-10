@@ -31,6 +31,23 @@ function renderUTCourse(){if(mode()!=='UT'||!utCourses.length)return;const q=nor
 const courseList=document.createElement('div');courseList.className='auto-results';courseList.id='courseSuggestions';courseList.hidden=true;course.parentElement.appendChild(courseList);
 function handleMode(){course.required=true;current.mode=mode();current.campus=null;current.program=null;campusList.hidden=programList.hidden=courseList.hidden=true;campus.readOnly=current.mode==='UT';campus.placeholder=current.mode==='UT'?'Universitas Terbuka':'Ketik untuk mencari kampus '+(current.mode==='PTN'?'negeri':'swasta');study.placeholder=current.mode==='UT'?'Cari program studi UT':'Cari program studi setelah memilih kampus';displayStatus();}
 campus.addEventListener('input',campusInput);campus.addEventListener('focus',campusInput);study.addEventListener('input',programInput);study.addEventListener('focus',programInput);course.addEventListener('input',renderUTCourse);course.addEventListener('focus',renderUTCourse);
+for(const [input,box] of [[campus,campusList],[study,programList],[course,courseList]]){
+  input.setAttribute('aria-autocomplete','list');
+  input.setAttribute('aria-controls',box.id);
+  input.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){box.hidden=true;return;}
+    if(e.key==='ArrowDown'&&!box.hidden){
+      const first=box.querySelector('button');
+      if(first){e.preventDefault();first.focus();}
+    }
+  });
+  box.addEventListener('keydown',e=>{
+    const buttons=[...box.querySelectorAll('button')],i=buttons.indexOf(document.activeElement);
+    if(e.key==='ArrowDown'&&i>=0){e.preventDefault();buttons[(i+1)%buttons.length]?.focus();}
+    if(e.key==='ArrowUp'&&i>=0){e.preventDefault();if(i===0)input.focus();else buttons[i-1]?.focus();}
+    if(e.key==='Escape'){e.preventDefault();box.hidden=true;input.focus();}
+  });
+}
 document.addEventListener('click',e=>{if(!campus.parentElement.contains(e.target))campusList.hidden=true;if(!study.parentElement.contains(e.target))programList.hidden=true;if(!course.parentElement.contains(e.target))courseList.hidden=true;});
 document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>setTimeout(handleMode,0)));
 document.querySelectorAll('.ut-option').forEach(el=>el.addEventListener('click',()=>{if(el.dataset.utMode==='semester'){course.required=false;}else{course.required=true;}}));
