@@ -1,0 +1,22 @@
+/* HIZVENA • national directory + order form */
+.contact-fields{padding:23px 23px 25px;margin-bottom:21px;background:linear-gradient(120deg,#f7f4ff,#f9fbff);border:1px solid #e7e0ff;border-radius:19px}
+.contact-fields h4{margin:0 0 4px;font-size:20px;color:#18254e;letter-spacing:-.5px}
+.contact-fields p{margin-bottom:16px;font-size:13.5px;color:#5a647e}
+.contact-fields .fields{margin:0;gap:16px}.contact-fields .field{font-size:13px}
+.required-label{color:#7754ec}
+#campusDatasetStatus{padding:9px 14px 10px;border-radius:10px;background:#f2efff;border-left:3px solid #9478fb;margin:0 0 20px;font-size:12.5px;line-height:1.5}
+#consultForm .field{position:relative;min-width:0}
+.auto-results{position:absolute;left:0;right:0;top:calc(100% - 3px);z-index:6;max-height:310px;overflow:auto;border:1px solid #dcd4f9;border-radius:12px;background:#fff;box-shadow:0 20px 38px rgba(25,23,73,.14)}
+.auto-results[hidden]{display:none!important}
+.auto-choice{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:11px 14px;width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid #f0edf8;cursor:pointer}
+.auto-choice:hover,.auto-choice:focus-visible{background:#f4f0ff;outline:0}
+.auto-choice strong{font-size:12.8px;color:#263057;font-weight:750}
+.auto-choice small{font-size:11px;color:#687188}
+#consultForm button[type=submit]{margin-top:4px}
+#consultForm .selection-summary{border-radius:16px}
+#consultForm .form-notice{font-size:12px;color:#5a647e}
+.hero .photo.photo-natural{background:linear-gradient(0deg,rgba(8,14,43,.86),rgba(8,14,43,.02) 60%),url('https://hizvena-catalog-2026.floot.app/_cdn/static/194c2637-8cc9-44d6-98c4-c05f01265cb1-hizvena-hero-natural-campus.png') center 39%/cover no-repeat,#16264e}
+.photo.photo-natural:before,.photo.photo-natural:after{display:none}
+.photo.photo-natural b{font-size:clamp(23px,2.4vw,32px);text-shadow:0 2px 15px #0007}
+.photo.photo-natural em:last-child{display:none}
+@media(max-width:720px){.contact-fields{padding:17px}.auto-results{max-height:250px}.hero .photo.photo-natural{min-height:315px;background-position:55% center}.photo.photo-natural b{font-size:26px}}
