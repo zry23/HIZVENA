@@ -1,0 +1,13 @@
+/* HIZVENA final polish V5 */
+.nav .brand{display:inline-flex;align-items:center;gap:12px;font-size:21px;letter-spacing:1.6px}
+.nav .brand img{box-shadow:0 6px 19px rgba(27,19,72,.16);border:1px solid #e3dcff}
+.nav .brand span{display:flex;flex-direction:column}
+.nav .brand small{font-size:8px;line-height:1.2;letter-spacing:2.3px;margin-top:4px}
+#consultForm #campusDatasetStatus{margin-top:8px}
+#consultForm .contact-fields input:invalid:not(:placeholder-shown){border-color:#eb9aa7}
+#consultForm .contact-fields input:valid:not(:placeholder-shown){border-color:#b0d6c3}
+.selection-summary{overflow-wrap:anywhere}
+.hero-art{min-width:0}
+#program .cards button{white-space:normal}
+#consultForm input,#consultForm select,#consultForm textarea{color-scheme:light}
+@media(max-width:580px){.nav .brand{font-size:20px;gap:9px}.nav .brand img{width:37px;height:37px}.nav .brand small{font-size:7px;letter-spacing:1.8px}}
