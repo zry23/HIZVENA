@@ -25,7 +25,7 @@ function updateUTControls(){
 const isUT=document.querySelector('[role="tab"][aria-selected="true"]')?.dataset.mode==='UT';
 utBox.hidden=!isUT;if(!isUT)return;
 utBox.querySelectorAll('.ut-option').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.utMode===utMode)));
-const helps={fast:'Ketik kode atau nama mata kuliah langsung. Data indeks masih menunggu impor, jadi admin akan memverifikasi.',browse:'Isi nama fakultas/program studi dan mata kuliah secara manual. Katalog pilihan otomatis akan aktif setelah dataset UT terimpor.',semester:'Paket Semester hanya untuk UT, rentang harga Rp1.500.000–Rp2.239.000. Detail mata kuliah dan cakupan dikonfirmasi admin.'};
+const helps={fast:'Cari mata kuliah menggunakan kode atau nama.',browse:'Pilih program studi dan mata kuliah UT.',semester:'Konsultasi Paket Semester UT melalui WhatsApp.'};
 document.getElementById('utModeHelp').textContent=helps[utMode];
 }
 utBox.querySelectorAll('.ut-option').forEach(btn=>btn.addEventListener('click',()=>{
