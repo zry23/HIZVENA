@@ -9,9 +9,9 @@ const source = path => readFileSync(file(path), 'utf8');
 const html = source('index.html');
 const requiredAssets = [
   'assets/design-v2.css', 'assets/design-v2.js',
-  'assets/directory-v3.css', 'assets/directory-v3.js',
+  'assets/directory-v3.css', 'assets/directory-v8.js',
   'assets/design-v4.css', 'assets/polish-v5.css',
-  'assets/signature-v6.css', 'assets/hero-campus-natural.jpg',
+  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/hero-campus-natural.jpg',
   'assets/hizvena-favicon.png',
 ];
 for (const asset of requiredAssets) {
@@ -34,10 +34,13 @@ const utCount = utData.courses?.length ?? 0;
 assert.ok(campusCount >= 4000, 'Campus dataset unexpectedly small');
 assert.ok(programCount >= 30000, 'Program dataset unexpectedly small');
 assert.ok(utCount >= 2000, 'UT dataset unexpectedly small');
-const formJS=source('assets/directory-v3.js');
+const formJS=source('assets/directory-v8.js');
 assert.ok(formJS.includes('id="customerName"'), 'Missing order name field');
 assert.ok(formJS.includes('id="customerWhatsApp"'), 'Missing order WhatsApp field');
-assert.ok(formJS.includes('campus.value===current.campus.name'), 'Campus focus regression');
+assert.ok(formJS.includes('campus.value===state.campus.name'), 'Campus focus regression');
+for(const f of ['faculty','programStudy','pathway','semester','courseCode','course'])assert.ok(html.includes('id="'+f+'"'), 'Missing academic field: '+f);
+assert.ok(formJS.includes('RPL / Alih Kredit') || html.includes('RPL / Alih Kredit'),'RPL path missing');
+assert.ok(!html.includes('class="hero-float"'),'AI-style hero overlay should be removed');
 assert.ok(formJS.includes("https://wa.me/6285169728694?text="), 'Missing admin WhatsApp URL');
 const domain=JSON.parse(source('domain-target.json'));
 assert.equal(domain.requested_domain, 'hizvena.com');
