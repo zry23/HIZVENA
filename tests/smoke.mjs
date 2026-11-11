@@ -48,8 +48,8 @@ assert.ok(!html.includes('class="hero-microproof"'),'Decorative hero symbols sho
 assert.ok(html.includes('Solusi Pendampingan Akademik'),'Requested hero copy missing');
 assert.ok(html.includes('data-mode="SEMUA"'),'Missing all-campus tab');
 assert.ok(formJS.includes('state.campuses};'),'All-campus option should cover the full dataset');
-assert.ok(formJS.includes("window.location.href='https://wa.me/6285169728694"),'Form must redirect to admin WhatsApp');
-assert.ok(formJS.includes("https://wa.me/6285169728694?text="), 'Missing admin WhatsApp URL');
+assert.ok(source('assets/customer-journey-v15.js').includes('window.location.href=url;'),'Review flow must open admin WhatsApp');
+assert.ok(source('assets/customer-journey-v15.js').includes('https://wa.me/6285169728694?text='), 'Missing admin WhatsApp URL');
 const domain=JSON.parse(source('domain-target.json'));
 assert.equal(domain.requested_domain, 'hizvena.com');
 assert.equal(domain.domain_status, 'requested_not_verified_or_connected');
@@ -62,7 +62,7 @@ assert.ok(html.includes('id="catalogDialog"'), 'Accessible catalog details');
 const newCatalog=JSON.parse(source('data/catalog-v11.json'));
 assert.ok(newCatalog.services.length>=12,'Catalog entries missing');
 assert.ok(newCatalog.services.every(x=>x.name&&x.description&&x.price&&x.scope&&x.duration&&x.revision),'Catalog metadata incomplete');
-assert.ok(source('assets/directory-v8.js').includes("window.confirm("),'Academic confirmation missing');
+assert.ok(source('assets/directory-v8.js').includes('window.HizvenaJourney.review('),'Academic review missing');
 
 // Testimonial feature must remain hidden until permission-reviewed images exist.
 const tData=JSON.parse(source('data/testimonials.json'));
