@@ -39,16 +39,16 @@ updateUTControls();updateSummary();
 const gallery=document.querySelector('#testimoni .cards');
 if(gallery && gallery.children.length===3){
 const more=document.createElement('div');more.className='cards';more.hidden=true;more.style.marginTop='18px';
-for(let i=0;i<3;i++){const box=document.createElement('div');box.className='testimonial';box.innerHTML='<span aria-hidden="true">▧</span><strong>Testimoni segera hadir</strong><small>Ruang untuk berbagi pengalaman pelanggan HIZVENA.</small>';more.appendChild(box);}
+for(let i=0;i<3;i++){const box=document.createElement('div');box.className='testimonial';box.innerHTML='<strong>Testimoni segera hadir</strong>';more.appendChild(box);}
 gallery.insertAdjacentElement('afterend',more);
-const toggle=document.createElement('button');toggle.type='button';toggle.className='btn secondary';toggle.style.marginTop='18px';toggle.textContent='Lihat semua slot testimoni (6)';
+const toggle=document.createElement('button');toggle.type='button';toggle.className='btn secondary';toggle.style.marginTop='18px';toggle.textContent='Lihat testimoni lainnya';
 toggle.setAttribute('aria-expanded','false');
 more.insertAdjacentElement('afterend',toggle);
-toggle.addEventListener('click',()=>{more.hidden=!more.hidden;toggle.setAttribute('aria-expanded',String(!more.hidden));toggle.textContent=more.hidden?'Lihat semua slot testimoni (6)':'Sembunyikan slot tambahan'});
+toggle.addEventListener('click',()=>{more.hidden=!more.hidden;toggle.setAttribute('aria-expanded',String(!more.hidden));toggle.textContent=more.hidden?'Lihat testimoni lainnya':'Tutup testimoni'});
 }
 // Update the footer with an explicitly expandable source declaration.
 const footer=document.querySelector('footer .wrap');if(footer){
-const dataDetails=document.createElement('details');dataDetails.style.cssText='margin-top:23px;background:#ffffff0b;border:1px solid #ffffff20;color:white;max-width:760px';dataDetails.innerHTML='<summary>Sumber data akademik dan status katalog</summary><p style="margin:10px 0">Indeks perguruan tinggi dan mata kuliah belum dimuat pada versi ini; input manual tetap tersedia. Referensi sumber: <a href="https://www.ut.ac.id/katalog/" target="_blank" rel="noopener" style="color:#c8baff;text-decoration:underline">Katalog Universitas Terbuka</a> dan <a href="https://data.kemdiktisaintek.go.id/dataset/perguruan-tinggi" target="_blank" rel="noopener" style="color:#c8baff;text-decoration:underline">Data pendidikan tinggi</a>.</p>';
+const dataDetails=document.createElement('details');dataDetails.style.cssText='margin-top:23px;background:#ffffff0b;border:1px solid #ffffff20;color:white;max-width:760px';dataDetails.innerHTML='<summary>Sumber data akademik</summary><p style="margin:10px 0">Data perguruan tinggi dan mata kuliah merupakan referensi. Sumber: <a href="https://www.ut.ac.id/katalog/" target="_blank" rel="noopener" style="color:#c8baff;text-decoration:underline">Katalog Universitas Terbuka</a> dan <a href="https://data.kemdiktisaintek.go.id/dataset/perguruan-tinggi" target="_blank" rel="noopener" style="color:#c8baff;text-decoration:underline">Data pendidikan tinggi</a>.</p>';
 footer.appendChild(dataDetails);
 }
 })();
