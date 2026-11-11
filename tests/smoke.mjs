@@ -68,7 +68,13 @@ assert.ok(source('assets/directory-v8.js').includes("window.confirm("),'Academic
 const tData=JSON.parse(source('data/testimonials.json'));
 assert.ok(Array.isArray(tData.items),'Testimonial manifest missing');
 assert.equal(tData.items.length,7,'Seven individual testimonial records expected');
-assert.ok(tData.items.every(x=>x.approved===false&&x.published===false),'Unconsented testimonials must not be published');
+assert.ok(tData.items.every(x=>x.approved===true&&x.published===true&&x.privacyReviewed===true),'Seven reviewed testimonials should be active');
+for(const item of tData.items){
+  assert.ok(existsSync(file(item.src.slice(2))),'Missing testimonial image: '+item.src);
+  const raw=readFileSync(file(item.src.slice(2)));
+  assert.ok(raw.toString('ascii',0,4)==='RIFF'&&raw.toString('ascii',8,12)==='WEBP','Invalid WebP file: '+item.src);
+  assert.ok(raw.length<5_000_000,'Oversized testimonial: '+item.src);
+}
 assert.equal(new Set(tData.items.map(x=>x.id)).size,7,'Each testimonial requires its own ID');
 assert.ok(html.includes('id="testimoni" hidden'),'Testimonial gallery should be hidden before approval');
 assert.ok(html.includes('id="testimonialLightbox"'),'Lightbox missing');

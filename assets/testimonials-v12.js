@@ -46,7 +46,7 @@ dialog.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault()
 full.addEventListener('touchstart',e=>{touchStart=e.changedTouches[0]?.screenX||0},{passive:true});
 full.addEventListener('touchend',e=>{const dx=(e.changedTouches[0]?.screenX||touchStart)-touchStart;if(Math.abs(dx)>55)move(dx<0?1:-1)},{passive:true});
 more.addEventListener('click',()=>{expanded=!expanded;show();if(!expanded)section.scrollIntoView({behavior:'auto',block:'start'})});
-fetch('./data/testimonials.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(data=>{
+fetch('./data/testimonials.json?v=14',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(data=>{
  if(!data||!Array.isArray(data.items))return;
  items=data.items.filter(valid).sort((a,b)=>(a.order||0)-(b.order||0));
  if(!items.length)return;
