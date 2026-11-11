@@ -1,0 +1,50 @@
+name: Prepare individual testimonial images
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/prepare-testimonials.yml'
+      - 'assets/testimonials/*.zip'
+permissions:
+  contents: write
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Extract verified WebP files from uploaded archive
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile
+          folder=Path("assets/testimonials")
+          archives=sorted(folder.glob("HIZVENA_7_TESTIMONI_BLUR_TERPISAH*.zip"))
+          if not archives:
+              print("No uploaded testimonial archive found")
+              raise SystemExit(0)
+          if len(archives)>1:
+              raise SystemExit("Multiple testimonial archives found: choose one")
+          with zipfile.ZipFile(archives[0]) as archive:
+              for i in range(1,8):
+                  relative=f"assets/testimonials/testimoni-{i:02}.webp"
+                  content=archive.read(relative)
+                  if not (content.startswith(b"RIFF") and content[8:12]==b"WEBP"):
+                      raise ValueError("Invalid WebP data: "+relative)
+                  if len(content)>5_000_000:
+                      raise ValueError("Image exceeds size limit: "+relative)
+                  Path(relative).write_bytes(content)
+                  print(f"Prepared {relative}: {len(content)} bytes")
+          PY
+      - name: Commit separate screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/testimonials/testimoni-0*.webp
+          if git diff --cached --quiet; then
+            echo "No changes to individual testimonial images"
+          else
+            git commit -m "Extract seven individually anonymized testimonial images from uploaded archive"
+            git push
+          fi
