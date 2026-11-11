@@ -45,7 +45,7 @@ assert.ok(!html.includes('id="faculty"'),'Faculty input should be removed');
 assert.ok(!html.includes('<span aria-hidden="true">*</span>'),'Visible required-field star markers should be removed');
 assert.ok(!formJS.includes('<span aria-hidden="true">*</span>'),'Dynamic required-field stars should be removed');
 assert.ok(!html.includes('class="hero-microproof"'),'Decorative hero symbols should be removed');
-assert.ok(html.includes('Solusi Akademik dan Desain Kreatif,'),'Requested hero copy missing');
+assert.ok(html.includes('Solusi Pendampingan Akademik'),'Requested hero copy missing');
 assert.ok(html.includes('data-mode="SEMUA"'),'Missing all-campus tab');
 assert.ok(formJS.includes('state.campuses};'),'All-campus option should cover the full dataset');
 assert.ok(formJS.includes("window.location.href='https://wa.me/6285169728694"),'Form must redirect to admin WhatsApp');
@@ -55,7 +55,7 @@ assert.equal(domain.requested_domain, 'hizvena.com');
 assert.equal(domain.domain_status, 'requested_not_verified_or_connected');
 console.log('HIZVENA smoke checks passed:', {campusCount,programCount,utCount});
 
-assert.ok(html.includes('Solusi Akademik dan Desain Kreatif,'), 'Requested headline');
+assert.ok(html.includes('Solusi Pendampingan Akademik'), 'Requested headline');
 assert.ok(!html.includes('Testimoni segera hadir'), 'No placeholder testimonials');
 assert.ok(html.includes('id="designConsultForm"'), 'Separate design consultation');
 assert.ok(html.includes('id="catalogDialog"'), 'Accessible catalog details');
