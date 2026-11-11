@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "notice": "Setiap item terpisah. File asli disimpan pada paket review privat, TIDAK di repo publik. Semua item tidak tampil sebelum izin publikasi diperoleh dan aset privat disensor serta diunggah oleh pengelola.",
+  "notice": "Tujuh gambar WebP yang telah disamarkan diaktifkan atas instruksi pengelola HIZVENA. Periksa selalu persetujuan publikasi setiap pihak terkait; perubahan status dapat dilakukan per item.",
   "items": [
     {
       "id": "testimoni-01",
@@ -9,9 +9,9 @@
       "caption": "Chat Pelanggan",
       "alt": "Screenshot chat pelanggan yang telah disensor",
       "order": 1,
-      "approved": false,
+      "approved": true,
       "privacyReviewed": true,
-      "published": false
+      "published": true
     },
     {
       "id": "testimoni-02",
@@ -20,9 +20,9 @@
       "caption": "Chat Pelanggan",
       "alt": "Screenshot chat pelanggan yang telah disensor",
       "order": 2,
-      "approved": false,
+      "approved": true,
       "privacyReviewed": true,
-      "published": false
+      "published": true
     },
     {
       "id": "testimoni-03",
@@ -31,9 +31,9 @@
       "caption": "Hasil Akademik",
       "alt": "Screenshot hasil akademik yang telah disensor",
       "order": 3,
-      "approved": false,
+      "approved": true,
       "privacyReviewed": true,
-      "published": false
+      "published": true
     },
     {
       "id": "testimoni-04",
@@ -42,9 +42,9 @@
       "caption": "Hasil Akademik",
       "alt": "Screenshot hasil akademik yang telah disensor",
       "order": 4,
-      "approved": false,
+      "approved": true,
       "privacyReviewed": true,
-      "published": false
+      "published": true
     },
     {
       "id": "testimoni-05",
@@ -53,9 +53,9 @@
       "caption": "Hasil Akademik",
       "alt": "Screenshot hasil akademik yang telah disensor",
       "order": 5,
-      "approved": false,
+      "approved": true,
       "privacyReviewed": true,
-      "published": false
+      "published": true
     },
     {
       "id": "testimoni-06",
@@ -64,9 +64,9 @@
       "caption": "Chat Pelanggan",
       "alt": "Screenshot chat pelanggan yang telah disensor",
       "order": 6,
-      "approved": false,
+      "approved": true,
       "privacyReviewed": true,
-      "published": false
+      "published": true
     },
     {
       "id": "testimoni-07",
@@ -75,9 +75,9 @@
       "caption": "Progres Layanan",
       "alt": "Screenshot progres layanan yang telah disensor",
       "order": 7,
-      "approved": false,
+      "approved": true,
       "privacyReviewed": true,
-      "published": false
+      "published": true
     }
   ]
 }
