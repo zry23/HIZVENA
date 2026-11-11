@@ -11,7 +11,7 @@ const requiredAssets = [
   'assets/design-v2.css', 'assets/design-v2.js',
   'assets/directory-v3.css', 'assets/directory-v8.js',
   'assets/design-v4.css', 'assets/polish-v5.css',
-  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/final-v10.css', 'assets/public-v11.css', 'assets/catalog-v11.js', 'assets/hero-campus-natural.jpg',
+  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/final-v10.css', 'assets/public-v11.css', 'assets/customer-ux-v13.css', 'assets/testimonials-v12.css', 'assets/catalog-v11.js', 'assets/customer-journey-v15.js', 'assets/testimonials-v12.js', 'assets/hero-campus-natural.jpg',
   'assets/hizvena-favicon.png',
 ];
 for (const asset of requiredAssets) {
@@ -45,24 +45,24 @@ assert.ok(!html.includes('id="faculty"'),'Faculty input should be removed');
 assert.ok(!html.includes('<span aria-hidden="true">*</span>'),'Visible required-field star markers should be removed');
 assert.ok(!formJS.includes('<span aria-hidden="true">*</span>'),'Dynamic required-field stars should be removed');
 assert.ok(!html.includes('class="hero-microproof"'),'Decorative hero symbols should be removed');
-assert.ok(html.includes('Solusi Akademik dan Desain Kreatif,'),'Requested hero copy missing');
+assert.ok(html.includes('Solusi Pendampingan Akademik'),'Requested hero copy missing');
 assert.ok(html.includes('data-mode="SEMUA"'),'Missing all-campus tab');
 assert.ok(formJS.includes('state.campuses};'),'All-campus option should cover the full dataset');
-assert.ok(formJS.includes("window.location.href='https://wa.me/6285169728694"),'Form must redirect to admin WhatsApp');
-assert.ok(formJS.includes("https://wa.me/6285169728694?text="), 'Missing admin WhatsApp URL');
+assert.ok(source('assets/customer-journey-v15.js').includes('window.location.href=url;'),'Review flow must open admin WhatsApp');
+assert.ok(source('assets/customer-journey-v15.js').includes('https://wa.me/6285169728694?text='), 'Missing admin WhatsApp URL');
 const domain=JSON.parse(source('domain-target.json'));
 assert.equal(domain.requested_domain, 'hizvena.com');
 assert.equal(domain.domain_status, 'requested_not_verified_or_connected');
 console.log('HIZVENA smoke checks passed:', {campusCount,programCount,utCount});
 
-assert.ok(html.includes('Solusi Akademik dan Desain Kreatif,'), 'Requested headline');
+assert.ok(html.includes('Solusi Pendampingan Akademik'), 'Requested headline');
 assert.ok(!html.includes('Testimoni segera hadir'), 'No placeholder testimonials');
 assert.ok(html.includes('id="designConsultForm"'), 'Separate design consultation');
 assert.ok(html.includes('id="catalogDialog"'), 'Accessible catalog details');
 const newCatalog=JSON.parse(source('data/catalog-v11.json'));
 assert.ok(newCatalog.services.length>=12,'Catalog entries missing');
 assert.ok(newCatalog.services.every(x=>x.name&&x.description&&x.price&&x.scope&&x.duration&&x.revision),'Catalog metadata incomplete');
-assert.ok(source('assets/directory-v8.js').includes("window.confirm("),'Academic confirmation missing');
+assert.ok(source('assets/directory-v8.js').includes('window.HizvenaJourney.review('),'Academic review missing');
 
 // Testimonial feature must remain hidden until permission-reviewed images exist.
 const tData=JSON.parse(source('data/testimonials.json'));
@@ -80,3 +80,37 @@ assert.ok(html.includes('id="testimoni" hidden'),'Testimonial gallery should be 
 assert.ok(html.includes('id="testimonialLightbox"'),'Lightbox missing');
 assert.ok(source('assets/testimonials-v12.js').includes('privacyReviewed===true'),'Privacy gate missing');
 assert.ok(html.includes('assets/testimonials-v12.css'),'Gallery stylesheet missing');
+
+// V15 customer journey integration assertions.
+assert.ok(html.includes('id="orderReviewDialog"'), 'Missing consultation summary dialog');
+assert.ok(html.includes('id="cara-pemesanan"'), 'Missing order process anchor');
+assert.ok(html.includes('id="academicDeadline"'), 'Missing optional academic deadline');
+assert.ok(html.includes('name="designPlatform"'), 'Missing design platform field');
+const journeyJS=source('assets/customer-journey-v15.js');
+assert.ok(journeyJS.includes('window.HizvenaJourney={setServices,select,lookup,review}'), 'Customer flow API missing');
+assert.ok(source('assets/catalog-v11.js').includes('window.HizvenaJourney.select(svc)'), 'Catalog does not drive forms');
+assert.ok(source('assets/directory-v8.js').includes('window.HizvenaJourney.review('), 'Academic form not integrated');
+assert.ok(!source('assets/directory-v8.js').includes('window.confirm('), 'Remove legacy browser popup');
+assert.ok(source('assets/catalog-v11.js').includes('window.HizvenaJourney.review('), 'Design review not integrated');
+
+assert.ok(source('assets/catalog-v11.js').includes("activeGroup==='akademik'&&x.category!=='desain'"), 'Academic category must include UT and other academic services');
+
+assert.ok(html.includes('data-catalog-filter="akademik"'),'Academic category link missing');
+assert.ok(html.includes('data-catalog-filter="desain"'),'Design category link missing');
+assert.ok(html.includes('id="orderReviewContinue"'),'Missing WhatsApp confirmation action');
+assert.ok(!source('assets/catalog-v11.js').includes('window.confirm('),'Design form must not use browser confirm');
+assert.ok(!html.includes("window.open(wa(lines.join("),'Legacy direct WhatsApp listener remains');
+
+// Public social media hub — official handles supplied by the site owner.
+assert.ok(html.includes('id="sosial-media"'), 'Social media section missing');
+for (const url of [
+ 'https://www.tiktok.com/@hizvena_id',
+ 'https://www.instagram.com/hizvena.id/',
+ 'https://www.youtube.com/@hizvena_id'
+]) {
+ assert.ok(html.includes('href="'+url+'"'), 'Missing social channel: '+url);
+}
+assert.ok(html.includes('href="#sosial-media"'), 'Footer must link to social channels');
+assert.ok(html.includes('class="social-connect-grid"'), 'Responsive social cards missing');
+assert.ok(source('assets/customer-ux-v13.css').includes('@media(max-width:620px){.social-connect-grid{grid-template-columns:1fr'), 'Phone layout missing');
+assert.ok(source('assets/customer-ux-v13.css').includes('@media(max-width:950px){.social-connect-grid{grid-template-columns:repeat(2'), 'Tablet layout missing');

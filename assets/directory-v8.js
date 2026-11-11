@@ -100,14 +100,14 @@ function changeMode(){
  refreshStatus();syncSummary();
 }
 document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>queueMicrotask(changeMode)));
-const specialUT=()=>{const semesterPackage=selectedMode()==='UT'&&utMode()==='semester';course.required=!semesterPackage;if(semesterPackage){course.value='Paket Semester UT';code.value='';service.value='Paket Semester UT';}else if(course.value==='Paket Semester UT'){course.value='';}};
+const specialUT=()=>{const semesterPackage=selectedMode()==='UT'&&utMode()==='semester';course.required=false;if(semesterPackage){course.value='Paket Semester UT';code.value='';service.value='Paket Semester UT';}else if(course.value==='Paket Semester UT'){course.value='';}};
 document.querySelectorAll('.ut-option').forEach(el=>el.addEventListener('click',()=>{queueMicrotask(()=>{specialUT();syncSummary()})}));
 function syncSummary(){
  const el=$('summaryText');if(!el)return;
  el.textContent=[label('Pemesan',$('customerName').value),label('WA',$('customerWhatsApp').value),label('Jalur kampus',selectedMode()),label('Kampus',campus.value),label('Prodi',study.value),label('Jalur kuliah',pathway.value),label('Semester',semester.value),label('Kode matkul',code.value),label('Mata kuliah',course.value),label('Layanan',service.value)].join(' • ');
 }
 form.addEventListener('input',syncSummary);form.addEventListener('change',syncSummary);
-const submit=form.querySelector('button[type=submit]');submit.textContent='Konsultasi via WhatsApp';
+const submit=form.querySelector('button[type=submit]');submit.textContent='Tinjau Ringkasan';
 form.addEventListener('submit',event=>{
  event.preventDefault();event.stopImmediatePropagation();
  const name=$('customerName').value.trim(),phone=$('customerWhatsApp').value.replace(/[\s()-]/g,'');
@@ -116,18 +116,16 @@ form.addEventListener('submit',event=>{
  if(!/^(?:\+?62|0)[0-9]{8,13}$/.test(phone)){$('customerWhatsApp').setCustomValidity('Nomor WhatsApp Indonesia tidak valid.');$('customerWhatsApp').reportValidity();return}
  $('customerWhatsApp').setCustomValidity('');
  if(!form.reportValidity())return;
- const payload=[
- 'Halo Kak Fazry, saya ingin konsultasi layanan HIZVENA.','',
- label('Nama pemesan',name),label('Nomor WhatsApp pemesan',phone),
- label('Kategori kampus',selectedMode()),label('Nama kampus',campus.value.trim()),
- label('Program studi',study.value.trim()),
- label('Jalur perkuliahan',pathway.value),label('Semester',semester.value),
- label('Kode mata kuliah',code.value.trim()),label('Mata kuliah/topik',course.value.trim()),
- label('Layanan',service.value),label('Rincian kebutuhan',details.value.trim()||'-'),'',
- 'Mohon konfirmasi ketersediaan, kurikulum/semester, harga final, dan proses pemesanannya. Terima kasih!'
- ];
- if(!window.confirm('Lanjutkan konsultasi melalui WhatsApp? Periksa rincian yang sudah kamu isi sebelum mengirim pesan.'))return;
- window.location.href='https://wa.me/6285169728694?text='+encodeURIComponent(payload.join('\n'));
+ const selected=window.HizvenaJourney.lookup(service.value,'academic');
+ window.HizvenaJourney.review({
+  form:'academic',category:'Akademik',name,phone,
+  serviceId:selected?.id||'',serviceName:selected?.name||service.value,
+  price:selected?.price||'Harga dikonfirmasi admin',
+  mode:selectedMode(),campus:campus.value.trim(),program:study.value.trim(),
+  pathway:pathway.value,semester:semester.value,courseCode:code.value.trim(),
+  course:course.value.trim(),deadline:$('academicDeadline').value,
+  details:details.value.trim()||'-'
+ });
 },true);
 $('customerName').addEventListener('input',()=> $('customerName').setCustomValidity(''));
 $('customerWhatsApp').addEventListener('input',()=> $('customerWhatsApp').setCustomValidity(''));
