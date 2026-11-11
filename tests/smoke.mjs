@@ -56,10 +56,19 @@ assert.equal(domain.domain_status, 'requested_not_verified_or_connected');
 console.log('HIZVENA smoke checks passed:', {campusCount,programCount,utCount});
 
 assert.ok(html.includes('Solusi Akademik dan Desain Kreatif,'), 'Requested headline');
-assert.ok(!html.includes('id="testimoni"'), 'Remove placeholder testimonials');
+assert.ok(!html.includes('Testimoni segera hadir'), 'No placeholder testimonials');
 assert.ok(html.includes('id="designConsultForm"'), 'Separate design consultation');
 assert.ok(html.includes('id="catalogDialog"'), 'Accessible catalog details');
 const newCatalog=JSON.parse(source('data/catalog-v11.json'));
 assert.ok(newCatalog.services.length>=12,'Catalog entries missing');
 assert.ok(newCatalog.services.every(x=>x.name&&x.description&&x.price&&x.scope&&x.duration&&x.revision),'Catalog metadata incomplete');
 assert.ok(source('assets/directory-v8.js').includes("window.confirm("),'Academic confirmation missing');
+
+// Testimonial feature must remain hidden until permission-reviewed images exist.
+const tData=JSON.parse(source('data/testimonials.json'));
+assert.ok(Array.isArray(tData.items),'Testimonial manifest missing');
+assert.equal(tData.items.length,0,'Unconsented screenshots must not be public');
+assert.ok(html.includes('id="testimoni" hidden'),'Testimonial gallery should be hidden before approval');
+assert.ok(html.includes('id="testimonialLightbox"'),'Lightbox missing');
+assert.ok(source('assets/testimonials-v12.js').includes('privacyReviewed===true'),'Privacy gate missing');
+assert.ok(html.includes('assets/testimonials-v12.css'),'Gallery stylesheet missing');
