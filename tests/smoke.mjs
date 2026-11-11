@@ -11,7 +11,7 @@ const requiredAssets = [
   'assets/design-v2.css', 'assets/design-v2.js',
   'assets/directory-v3.css', 'assets/directory-v8.js',
   'assets/design-v4.css', 'assets/polish-v5.css',
-  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/hero-campus-natural.jpg',
+  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/final-v10.css', 'assets/hero-campus-natural.jpg',
   'assets/hizvena-favicon.png',
 ];
 for (const asset of requiredAssets) {
@@ -42,6 +42,10 @@ for(const f of ['programStudy','pathway','semester','courseCode','course'])asser
 assert.ok(formJS.includes('RPL / Alih Kredit') || html.includes('RPL / Alih Kredit'),'RPL path missing');
 assert.ok(!html.includes('class="hero-float"'),'AI-style hero overlay should be removed');
 assert.ok(!html.includes('id="faculty"'),'Faculty input should be removed');
+assert.ok(!html.includes('<span aria-hidden="true">*</span>'),'Visible required-field star markers should be removed');
+assert.ok(!formJS.includes('<span aria-hidden="true">*</span>'),'Dynamic required-field stars should be removed');
+assert.ok(!html.includes('class="hero-microproof"'),'Decorative hero symbols should be removed');
+assert.ok(html.includes('Kebutuhan kuliah dan desain,'),'Concise hero copy missing');
 assert.ok(html.includes('data-mode="SEMUA"'),'Missing all-campus tab');
 assert.ok(formJS.includes('state.campuses};'),'All-campus option should cover the full dataset');
 assert.ok(formJS.includes("window.location.href='https://wa.me/6285169728694"),'Form must redirect to admin WhatsApp');
