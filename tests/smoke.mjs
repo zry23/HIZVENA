@@ -45,7 +45,7 @@ assert.ok(!html.includes('id="faculty"'),'Faculty input should be removed');
 assert.ok(!html.includes('<span aria-hidden="true">*</span>'),'Visible required-field star markers should be removed');
 assert.ok(!formJS.includes('<span aria-hidden="true">*</span>'),'Dynamic required-field stars should be removed');
 assert.ok(!html.includes('class="hero-microproof"'),'Decorative hero symbols should be removed');
-assert.ok(html.includes('Kebutuhan kuliah dan desain,'),'Concise hero copy missing');
+assert.ok(html.includes('Solusi Akademik dan Desain Kreatif,'),'Requested hero copy missing');
 assert.ok(html.includes('data-mode="SEMUA"'),'Missing all-campus tab');
 assert.ok(formJS.includes('state.campuses};'),'All-campus option should cover the full dataset');
 assert.ok(formJS.includes("window.location.href='https://wa.me/6285169728694"),'Form must redirect to admin WhatsApp');
