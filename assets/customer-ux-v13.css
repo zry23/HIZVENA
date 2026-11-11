@@ -1,0 +1,38 @@
+/* HIZVENA V13 — customer-first visual system, overrides only. */
+:root{--navy:#172d36;--violet:#177b75;--gray:#52626a;--pale:#f7f8f6;--cyan:#d5b47a}
+html{scroll-padding-top:95px}
+body{background:#fff;color:#263238;font-family:Inter,"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:rgba(255,255,255,.97);border-bottom:1px solid #e4e9e7}
+.brand,.nav .brand{color:#172d36}
+.brand small,.eyebrow,nav a:hover{color:#177b75}
+.btn,.tab[aria-selected=true]{background:#177b75;color:#fff;border-color:#177b75}
+.btn.secondary{background:#fff;color:#12635e;border-color:#a5cbc6}
+.btn:hover{filter:brightness(.95);box-shadow:none}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #177b75;outline-offset:3px}
+.hero{background:#f7f8f6;padding-block:74px}
+.hero h1 span,.hero .eyebrow,.card .price{color:#177b75}
+.hero p{color:#52626a}
+.hero .photo.photo-natural.clean-hero{box-shadow:0 14px 30px rgba(23,45,54,.09)}
+section.alt{background:#f7f8f6}
+.card,.path-card,.form,details,.testimonial-tile{border-color:#e0e7e5;box-shadow:0 3px 14px rgba(23,45,54,.035)}
+.path-card:hover,.card:hover{border-color:#8dbdb5}
+.card,.form{border-radius:16px}
+.feature,.about-note{background:#f7f8f6}
+.tab,.field input,.field select,.field textarea,.catalog-controls input,.catalog-controls select{border-color:#cbd8d5}
+.field:focus-within input,.field:focus-within select,.field:focus-within textarea{outline:2px solid #177b75;outline-offset:1px}
+.step{border-top-color:#177b75}.step b{color:#177b75}
+.catalog-status,.catalog-service-category,.catalog-service-price{color:#177b75}
+.selection-summary,#utJourney,.design-preview{background:#f1f7f5!important;border-color:#c9dfd9!important}
+.ut-option[aria-pressed=true]{background:#177b75!important;border-color:#177b75!important}
+.final-cta{background:#172d36}
+footer{background:#172d36}
+#katalog{scroll-margin-top:85px}
+#akademik,#desain,#layanan,#testimoni,#faq{scroll-margin-top:85px}
+.catalog-controls input,.catalog-controls select,.form input,.form select,.form textarea{min-height:46px}
+.catalog-service-actions{gap:9px}
+.catalog-service-actions .btn{min-height:44px}
+.service-paths{padding-top:64px}
+#katalog{padding-top:66px}
+@media(max-width:800px){nav.open{border-bottom:1px solid #e0e7e5}.hero{padding:48px 0 56px}}
+@media(max-width:580px){.hero{padding:42px 0 48px}.service-paths{padding-top:50px}#katalog{padding-top:50px}#katalog .listing{grid-template-columns:1fr}.btn{min-height:46px}body{overflow-x:clip}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
