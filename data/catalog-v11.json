@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "updated": "2026-11-11",
+  "currency": "IDR",
+  "notes": "Data katalog dapat diubah pada file JSON oleh pengelola GitHub yang berwenang. Tidak tersedia panel admin publik.",
+  "services": [
+    {
+      "id": "ut-diskusi",
+      "category": "akademik-ut",
+      "name": "Pendampingan Diskusi Tuton UT",
+      "price": "Rp19.000 / mata kuliah",
+      "description": "Bimbingan dan review untuk memahami topik diskusi Tuton.",
+      "scope": "Konsultasi, penjelasan materi, dan umpan balik.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "ut-tugas",
+      "category": "akademik-ut",
+      "name": "Bimbingan dan Review Tugas Tuton UT",
+      "price": "Rp76.000 / mata kuliah",
+      "description": "Pendampingan penyusunan dan pemeriksaan pekerjaan mandiri mahasiswa.",
+      "scope": "Penjelasan instruksi, arahan, dan review draf mahasiswa.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "ut-bank",
+      "category": "akademik-ut",
+      "name": "Latihan UAS HOTS (50 Soal)",
+      "price": "Rp29.000 / mata kuliah",
+      "description": "Paket latihan untuk membantu persiapan evaluasi akademik.",
+      "scope": "50 soal latihan, bukan soal ujian resmi.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "ut-paket",
+      "category": "akademik-ut",
+      "name": "Paket Pendampingan Semester UT",
+      "price": "Rp1.500.000–Rp2.239.000",
+      "description": "Pendampingan belajar selama satu semester UT sesuai kebutuhan.",
+      "scope": "Konsultasi sesi Tuton, review tugas mandiri, latihan, dan pemantauan sesuai kesepakatan.",
+      "duration": "Mengikuti kalender semester dan kesepakatan",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "umum-review",
+      "category": "akademik-umum",
+      "name": "Pendampingan Akademik PTN/PTS",
+      "price": "Rp19.000–Rp199.000",
+      "description": "Bimbingan dan review akademik berdasarkan kebutuhan dan kompleksitas.",
+      "scope": "Review tulisan, presentasi, latihan, atau diskusi materi.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "desain-poster",
+      "category": "desain",
+      "name": "Poster Digital",
+      "price": "Rp50.000–Rp100.000",
+      "description": "Desain poster digital untuk kebutuhan personal atau bisnis.",
+      "scope": "Konsep visual dan file akhir sesuai format yang disepakati.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "desain-feed",
+      "category": "desain",
+      "name": "Feed Instagram / Story",
+      "price": "Rp35.000–Rp60.000",
+      "description": "Visual media sosial sesuai kebutuhan komunikasi.",
+      "scope": "Desain satuan dan file akhir berdasarkan brief.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "desain-cv",
+      "category": "desain",
+      "name": "CV ATS",
+      "price": "Rp50.000–Rp100.000",
+      "description": "Penataan informasi CV dengan tampilan sederhana dan mudah dibaca.",
+      "scope": "Layout CV dan file akhir sesuai brief.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "desain-slide",
+      "category": "desain",
+      "name": "Presentasi",
+      "price": "Rp10.000–Rp20.000 / slide",
+      "description": "Desain slide presentasi akademik atau profesional.",
+      "scope": "Layout slide berdasarkan materi yang disediakan pelanggan.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "desain-brosur",
+      "category": "desain",
+      "name": "Brosur",
+      "price": "Rp75.000–Rp150.000",
+      "description": "Desain brosur untuk informasi layanan dan promosi.",
+      "scope": "Layout dan file siap pakai sesuai brief.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "desain-banner",
+      "category": "desain",
+      "name": "Spanduk / Banner",
+      "price": "Rp75.000–Rp150.000",
+      "description": "Desain materi visual berukuran besar.",
+      "scope": "Desain banner dan file akhir sesuai ukuran.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    },
+    {
+      "id": "desain-logo",
+      "category": "desain",
+      "name": "Logo Sederhana",
+      "price": "Rp175.000–Rp350.000",
+      "description": "Layanan pembuatan logo sederhana berdasarkan brief.",
+      "scope": "Pembuatan konsep dan hasil akhir sesuai kesepakatan.",
+      "duration": "Dikonfirmasi admin",
+      "revision": "Disepakati sebelum pemesanan"
+    }
+  ]
+}

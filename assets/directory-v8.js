@@ -126,6 +126,7 @@ form.addEventListener('submit',event=>{
  label('Layanan',service.value),label('Rincian kebutuhan',details.value.trim()||'-'),'',
  'Mohon konfirmasi ketersediaan, kurikulum/semester, harga final, dan proses pemesanannya. Terima kasih!'
  ];
+ if(!window.confirm('Lanjutkan konsultasi melalui WhatsApp? Periksa rincian yang sudah kamu isi sebelum mengirim pesan.'))return;
  window.location.href='https://wa.me/6285169728694?text='+encodeURIComponent(payload.join('\n'));
 },true);
 $('customerName').addEventListener('input',()=> $('customerName').setCustomValidity(''));

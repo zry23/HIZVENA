@@ -11,7 +11,7 @@ const requiredAssets = [
   'assets/design-v2.css', 'assets/design-v2.js',
   'assets/directory-v3.css', 'assets/directory-v8.js',
   'assets/design-v4.css', 'assets/polish-v5.css',
-  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/final-v10.css', 'assets/hero-campus-natural.jpg',
+  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/final-v10.css', 'assets/public-v11.css', 'assets/catalog-v11.js', 'assets/hero-campus-natural.jpg',
   'assets/hizvena-favicon.png',
 ];
 for (const asset of requiredAssets) {
@@ -54,3 +54,12 @@ const domain=JSON.parse(source('domain-target.json'));
 assert.equal(domain.requested_domain, 'hizvena.com');
 assert.equal(domain.domain_status, 'requested_not_verified_or_connected');
 console.log('HIZVENA smoke checks passed:', {campusCount,programCount,utCount});
+
+assert.ok(html.includes('Solusi Akademik dan Desain Kreatif,'), 'Requested headline');
+assert.ok(!html.includes('id="testimoni"'), 'Remove placeholder testimonials');
+assert.ok(html.includes('id="designConsultForm"'), 'Separate design consultation');
+assert.ok(html.includes('id="catalogDialog"'), 'Accessible catalog details');
+const newCatalog=JSON.parse(source('data/catalog-v11.json'));
+assert.ok(newCatalog.services.length>=12,'Catalog entries missing');
+assert.ok(newCatalog.services.every(x=>x.name&&x.description&&x.price&&x.scope&&x.duration&&x.revision),'Catalog metadata incomplete');
+assert.ok(source('assets/directory-v8.js').includes("window.confirm("),'Academic confirmation missing');
