@@ -1,0 +1,44 @@
+/* HIZVENA V8 — premium editorial education UI */
+:root{--navy:#10203c;--violet:#6750dc;--pale:#f8f9fd;--gray:#65718a}
+body{color:#172443}
+header{box-shadow:0 4px 20px rgba(26,32,68,.045)}
+.hero{background:linear-gradient(107deg,#fafbff,#f2f1ff);padding:76px 0 86px}
+.heroGrid{gap:50px;align-items:center}
+.hero h1{font-weight:850;font-size:clamp(40px,4.6vw,62px);letter-spacing:-2.6px;line-height:1.12}
+.hero h1 span{background:linear-gradient(95deg,#6650db,#716aeb);-webkit-background-clip:text;background-clip:text}
+.hero .eyebrow{background:#eeecff;color:#6751da;border:1px solid #e5dfff}
+.hero-art:after{display:none!important}
+.hero .photo.photo-natural.clean-hero{min-height:380px;border-radius:24px;transform:none;background: url('./hero-campus-natural.jpg') center center/cover no-repeat,#dcdff3;box-shadow:0 20px 48px rgba(32,31,75,.14)}
+.hero .photo.photo-natural.clean-hero:before,.hero .photo.photo-natural.clean-hero:after{content:none;display:none}
+.hero .photo.photo-natural.clean-hero>*{display:none}
+.hero-microproof,.hero-float{display:none!important}
+.highlight-ribbon{background:#172541}
+#program{background:#f8f9fd}
+#program .cards .card{box-shadow:0 7px 27px rgba(23,32,64,.055)}
+#program .cards .card:before{background:#7862e8}
+.form-intro{margin:0 0 26px;color:#68738c;max-width:740px;font-size:14px}
+.form{box-shadow:0 20px 52px #101d3910;border-radius:20px}
+.form-grid-header{flex-wrap:wrap}
+.form .fields{gap:20px}
+.form .field{position:relative;font-weight:680;color:#223150}
+.form .field input,.form .field select,.form .field textarea{min-height:49px;border:1px solid #dce0ed;border-radius:10px;background:white;color:#19243f;font-weight:500;font-size:14px}
+.form .field input::placeholder,.form .field textarea::placeholder{color:#8a93a7}
+.form .field input:focus,.form .field select:focus,.form .field textarea:focus{border-color:#7561e9;outline:3px solid #ded9ff}
+.form .field>span{color:#7360dc}
+.contact-fields{padding:20px 22px;background:#f7f6ff;border:1px solid #e7e2fb;border-radius:15px;margin:7px 0 16px}
+.contact-fields h4{font-size:19px;font-weight:780;margin:0 0 3px}
+.contact-fields p{color:#65718b;font-size:13px;margin-bottom:15px}
+.catalog-status{font-size:13px;line-height:1.6;background:#f1efff;border-left:3px solid #826bea;color:#58527c;border-radius:8px;padding:12px 14px;margin:0 0 20px}
+.search-field{position:relative}
+.catalog-results{position:absolute;z-index:10;top:calc(100% - 1px);left:0;right:0;max-height:280px;overflow:auto;background:white;border:1px solid #d9d4f4;border-radius:12px;box-shadow:0 15px 36px #17173d26}
+.catalog-results[hidden]{display:none!important}
+.catalog-choice{width:100%;display:flex;flex-direction:column;align-items:start;text-align:left;padding:12px 14px;background:white;border:0;border-bottom:1px solid #eeeaf9;cursor:pointer;line-height:1.4;gap:3px}
+.catalog-choice:hover,.catalog-choice:focus-visible{background:#f2efff;outline:none}
+.catalog-choice strong{color:#172443;font-size:13px}
+.catalog-choice small{color:#65718b;font-size:11.5px}
+#consultForm .hint{background:#f8f9fc;border-left:3px solid #b7aae9;padding:12px 14px;border-radius:8px;line-height:1.7}
+#consultForm button[type=submit]{min-height:52px;padding:14px 28px}
+#faq details{box-shadow:none}
+@media(max-width:900px){.heroGrid{gap:25px}.hero .photo.photo-natural.clean-hero{min-height:320px}}
+@media(max-width:800px){.heroGrid{grid-template-columns:1fr}.hero .photo.photo-natural.clean-hero{min-height:360px}}
+@media(max-width:580px){.hero{padding:45px 0 56px}.hero h1{font-size:clamp(36px,10.2vw,49px);line-height:1.15;letter-spacing:-1.5px}.hero .photo.photo-natural.clean-hero{min-height:245px;border-radius:17px}.form .fields{grid-template-columns:1fr;gap:16px}.contact-fields{padding:17px}.catalog-results{max-height:230px}}
