@@ -1,0 +1,60 @@
+/* HIZVENA Final V10 — clean typography for desktop and mobile */
+:root{--navy:#17223d;--violet:#6954df;--gray:#515e75}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif;color:#19243c;font-size:16px;line-height:1.65;letter-spacing:0}
+p,.intro,.hint,small,summary{overflow-wrap:break-word}
+header .nav{min-height:76px}
+.nav .brand{letter-spacing:.9px}
+.nav .brand small{font-weight:750;letter-spacing:1.7px}
+.nav nav{gap:19px}
+.nav nav>a{font-size:14px;font-weight:650}
+.hero{padding:75px 0 82px;background:linear-gradient(120deg,#fff,#f7f6ff)}
+.hero h1{font-size:clamp(39px,4.5vw,60px);line-height:1.15;letter-spacing:-1.8px;overflow-wrap:normal}
+.hero p{color:#4c5971;font-size:17px;line-height:1.76;max-width:580px}
+.hero .eyebrow{background:transparent;border:0;padding:0;color:#6149cf}
+.hero .photo.photo-natural.clean-hero{box-shadow:0 18px 36px rgba(32,38,71,.13);border-radius:20px}
+.btn{font-size:14px;letter-spacing:0;line-height:1.35;text-align:center;box-shadow:none;min-height:46px}
+.btn:hover{box-shadow:0 7px 18px #1d25541a}
+section{padding:74px 0}
+h2{letter-spacing:-1.05px;line-height:1.22}
+h3{letter-spacing:-.35px}
+.eyebrow{letter-spacing:1.3px}
+.section-head{gap:30px}
+.benefit-grid{gap:16px}
+.benefit{padding:24px;box-shadow:none;border:1px solid #e6e9f1}
+.benefit:after{display:none}
+.benefit strong{font-size:17px}
+.benefit p{font-size:14px;line-height:1.7}
+#program .cards>.card{min-height:220px;padding:24px}
+#program .cards>.card:before{height:3px}
+#program .cards>.card h3{font-size:19px}
+#program .cards>.card p{font-size:14px}
+.tabs{display:flex;width:max-content;max-width:100%;gap:5px;flex-wrap:wrap}
+.tabs .tab{font-size:14px;font-weight:750}
+.form{padding:30px;border-radius:18px}
+.form-grid-header{margin-bottom:8px}
+.form-intro{font-size:14px;line-height:1.7}
+.form .field{font-size:14px;font-weight:700;line-height:1.5}
+.form .field input,.form .field select,.form .field textarea{font-family:inherit;font-size:15px;font-weight:500;color:#15213c}
+.contact-fields h4{font-size:19px}
+.contact-fields p{font-size:14px}
+.catalog-status{font-size:13px;color:#554c78}
+.catalog-choice strong{font-size:14px;line-height:1.4}
+.catalog-choice small{font-size:12px;line-height:1.4}
+#consultForm .hint{font-size:13px;line-height:1.7}
+#academicPrices .card h3,#designPrices .card h3{font-size:18px}
+.listing .card .price{font-size:23px}
+.service-note{font-size:13px;line-height:1.65}
+.step b{font-size:14px}
+.step h3{font-size:18px}
+#testimoni .testimonial{min-height:200px;background:#f8f7ff}
+#testimoni .testimonial strong{font-size:16px}
+#faq details summary{font-size:16px;line-height:1.5}
+.final-cta h2{max-width:660px}
+.final-cta p{line-height:1.7}
+footer{padding:48px 0}
+footer .notice{font-size:13px}
+@media(max-width:900px){.nav nav{gap:12px}.nav nav>a{font-size:13px}.hero h1{font-size:clamp(37px,5.3vw,54px)}}
+@media(max-width:800px){.nav nav{gap:16px}.hero{padding:52px 0 62px}.hero .photo.photo-natural.clean-hero{min-height:300px}.hero p{font-size:16px}}
+@media(max-width:580px){body{font-size:15px;line-height:1.65}.wrap{width:calc(100% - 36px)}.nav{min-height:70px}.hero{padding:42px 0 54px}.hero h1{font-size:clamp(34px,9vw,47px);line-height:1.17;letter-spacing:-1.2px}.hero p{font-size:15px;line-height:1.72}.hero .photo.photo-natural.clean-hero{min-height:245px;border-radius:16px}.actions{flex-direction:column;align-items:stretch}.actions .btn{width:100%}section{padding:53px 0}h2{font-size:clamp(27px,7.5vw,36px);letter-spacing:-.75px}.intro{font-size:14px;margin-bottom:18px}.benefit-grid{gap:12px}.benefit{padding:20px}.cards,.listing{gap:12px}#program .cards>.card{min-height:auto;padding:20px}.tabs{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tabs .tab{padding:11px 8px;font-size:13px}.form{padding:22px 17px;border-radius:17px}.form h3{font-size:22px}.form .fields{gap:15px}.form .field{font-size:13.5px}.form .field input,.form .field select,.form .field textarea{font-size:16px;min-height:48px}.contact-fields{padding:17px}.contact-fields .fields{gap:14px}.contact-fields h4{font-size:18px}.contact-fields p{font-size:13px}.catalog-results{max-height:235px}.service-note{padding:15px}.testimonial{min-height:185px}.final-cta{padding:31px 20px}.final-cta h2{font-size:29px}.final-cta p{font-size:14px}footer p,footer small{font-size:13px}.mobile-quick-cta{padding:9px 16px calc(9px + env(safe-area-inset-bottom))}.mobile-quick-cta strong{font-size:12px}.mobile-quick-cta .btn{font-size:12px;white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
