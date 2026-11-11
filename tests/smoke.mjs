@@ -100,3 +100,17 @@ assert.ok(html.includes('data-catalog-filter="desain"'),'Design category link mi
 assert.ok(html.includes('id="orderReviewContinue"'),'Missing WhatsApp confirmation action');
 assert.ok(!source('assets/catalog-v11.js').includes('window.confirm('),'Design form must not use browser confirm');
 assert.ok(!html.includes("window.open(wa(lines.join("),'Legacy direct WhatsApp listener remains');
+
+// Public social media hub — official handles supplied by the site owner.
+assert.ok(html.includes('id="sosial-media"'), 'Social media section missing');
+for (const url of [
+ 'https://www.tiktok.com/@hizvena_id',
+ 'https://www.instagram.com/hizvena.id/',
+ 'https://www.youtube.com/@hizvena_id'
+]) {
+ assert.ok(html.includes('href="'+url+'"'), 'Missing social channel: '+url);
+}
+assert.ok(html.includes('href="#sosial-media"'), 'Footer must link to social channels');
+assert.ok(html.includes('class="social-connect-grid"'), 'Responsive social cards missing');
+assert.ok(source('assets/customer-ux-v13.css').includes('@media(max-width:620px){.social-connect-grid{grid-template-columns:1fr'), 'Phone layout missing');
+assert.ok(source('assets/customer-ux-v13.css').includes('@media(max-width:950px){.social-connect-grid{grid-template-columns:repeat(2'), 'Tablet layout missing');
