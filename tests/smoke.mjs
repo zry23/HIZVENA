@@ -11,7 +11,7 @@ const requiredAssets = [
   'assets/design-v2.css', 'assets/design-v2.js',
   'assets/directory-v3.css', 'assets/directory-v8.js',
   'assets/design-v4.css', 'assets/polish-v5.css',
-  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/final-v10.css', 'assets/public-v11.css', 'assets/catalog-v11.js', 'assets/customer-journey-v15.js', 'assets/hero-campus-natural.jpg',
+  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/final-v10.css', 'assets/public-v11.css', 'assets/customer-ux-v13.css', 'assets/testimonials-v12.css', 'assets/catalog-v11.js', 'assets/customer-journey-v15.js', 'assets/testimonials-v12.js', 'assets/hero-campus-natural.jpg',
   'assets/hizvena-favicon.png',
 ];
 for (const asset of requiredAssets) {
@@ -94,3 +94,9 @@ assert.ok(!source('assets/directory-v8.js').includes('window.confirm('), 'Remove
 assert.ok(source('assets/catalog-v11.js').includes('window.HizvenaJourney.review('), 'Design review not integrated');
 
 assert.ok(source('assets/catalog-v11.js').includes("activeGroup==='akademik'&&x.category!=='desain'"), 'Academic category must include UT and other academic services');
+
+assert.ok(html.includes('data-catalog-filter="akademik"'),'Academic category link missing');
+assert.ok(html.includes('data-catalog-filter="desain"'),'Design category link missing');
+assert.ok(html.includes('id="orderReviewContinue"'),'Missing WhatsApp confirmation action');
+assert.ok(!source('assets/catalog-v11.js').includes('window.confirm('),'Design form must not use browser confirm');
+assert.ok(!html.includes("window.open(wa(lines.join("),'Legacy direct WhatsApp listener remains');
