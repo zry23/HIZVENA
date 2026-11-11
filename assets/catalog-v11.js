@@ -5,11 +5,11 @@ if(!list||!dialog)return;
 const categories={'akademik-ut':'Akademik UT','akademik-umum':'Akademik PTN/PTS',desain:'Desain Grafis'};
 const wa=(title,ref='')=>'https://wa.me/6285169728694?text='+encodeURIComponent('Halo Kak Fazry, saya ingin konsultasi layanan HIZVENA.\n\nLayanan: '+title+(ref?'\nReferensi: '+ref:'')+'\n\nMohon informasi cakupan, estimasi waktu, ketentuan revisi, dan harga akhir.');
 const norm=value=>String(value||'').toLocaleLowerCase('id-ID');
-let services=[];
+let services=[],activeGroup='semua';
 function element(tag,className,text){const e=document.createElement(tag);if(className)e.className=className;if(text!==undefined)e.textContent=String(text);return e}
 function render(){
 const q=norm(search.value).trim(),c=category.value;
-const matching=services.filter(x=>(c==='semua'||x.category===c)&&(!q||norm(x.name+' '+x.description+' '+x.scope).includes(q)));
+const matching=services.filter(x=>(activeGroup==='semua'||(activeGroup==='akademik'&&x.category!=='desain')||(activeGroup==='desain'&&x.category==='desain'))&&(c==='semua'||x.category===c)&&(!q||norm(x.name+' '+x.description+' '+x.scope).includes(q)));
 count.textContent=matching.length+' layanan ditemukan';list.replaceChildren();
 if(!matching.length){list.append(element('p','catalog-empty','Tidak ada layanan yang cocok. Coba kata kunci lain.'));return}
 for(const svc of matching){
@@ -34,8 +34,8 @@ function openDetail(svc){
 }
 $('catalogClose').addEventListener('click',()=>dialog.close?dialog.close():dialog.removeAttribute('open'));
 dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close?dialog.close():dialog.removeAttribute('open')});
-search.addEventListener('input',render);category.addEventListener('change',render);
-document.querySelectorAll('[data-catalog-filter]').forEach(el=>el.addEventListener('click',()=>{const target=el.dataset.catalogFilter;category.value=target==='desain'?'desain':'semua';search.value=target==='akademik'?'akademik':'';render()}));
+search.addEventListener('input',render);category.addEventListener('change',()=>{activeGroup='semua';render()});
+document.querySelectorAll('[data-catalog-filter]').forEach(el=>el.addEventListener('click',()=>{const target=el.dataset.catalogFilter;activeGroup=target;category.value=target==='desain'?'desain':'semua';search.value='';render()}));
 const dForm=$('designConsultForm'),dType=$('designType'),dPreview=$('designPreview');
 function submitDesign(event){
  event.preventDefault();if(!dForm.reportValidity())return;

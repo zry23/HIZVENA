@@ -92,3 +92,5 @@ assert.ok(source('assets/catalog-v11.js').includes('window.HizvenaJourney.select
 assert.ok(source('assets/directory-v8.js').includes('window.HizvenaJourney.review('), 'Academic form not integrated');
 assert.ok(!source('assets/directory-v8.js').includes('window.confirm('), 'Remove legacy browser popup');
 assert.ok(source('assets/catalog-v11.js').includes('window.HizvenaJourney.review('), 'Design review not integrated');
+
+assert.ok(source('assets/catalog-v11.js').includes("activeGroup==='akademik'&&x.category!=='desain'"), 'Academic category must include UT and other academic services');
