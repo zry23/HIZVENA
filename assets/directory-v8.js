@@ -1,12 +1,10 @@
-/* HIZVENA V8 • campus/faculty/program/pathway/course catalogue */
+/* HIZVENA V9 • all-campus searchable catalog with WhatsApp landing page */
 (()=>{'use strict';
 const $=id=>document.getElementById(id), form=$('consultForm'); if(!form)return;
-const campus=$('campus'),faculty=$('faculty'),study=$('programStudy'),pathway=$('pathway'),semester=$('semester'),course=$('course'),code=$('courseCode'),service=$('service'),details=$('details');
+const campus=$('campus'),study=$('programStudy'),pathway=$('pathway'),semester=$('semester'),course=$('course'),code=$('courseCode'),service=$('service'),details=$('details');
 const norm=v=>String(v||'').toLocaleLowerCase('id-ID').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
-const FACULTIES={FEB:'Fakultas Ekonomi dan Bisnis',FHISIP:'Fakultas Hukum, Ilmu Sosial, dan Ilmu Politik',FKIP:'Fakultas Keguruan dan Ilmu Pendidikan',FST:'Fakultas Sains dan Teknologi'};
-const availableUT=new Set(Object.values(FACULTIES));
 const state={campuses:[],programs:{},ut:[],campus:null,program:null,course:null,loaded:false,utLoaded:false};
-const selectedMode=()=>document.querySelector('[role="tab"][aria-selected="true"]')?.dataset.mode||'UT';
+const selectedMode=()=>document.querySelector('[role="tab"][aria-selected="true"]')?.dataset.mode||'SEMUA';
 const utMode=()=>document.querySelector('.ut-option[aria-pressed="true"]')?.dataset.utMode||'fast';
 const contact=document.createElement('div');
 contact.className='contact-fields';
@@ -41,27 +39,26 @@ async function initData(){
  try{const d=await getData('./data/hizvena-ut-s1-course-index-v2.json.gz');state.ut=d.courses||[];state.utLoaded=true}catch(e){console.warn('HIZVENA indeks UT:',e)}
  refreshStatus();
 }
-const modeItems=()=>{const m=selectedMode();return m==='PTN'?state.campuses.filter(x=>x.type==='Negeri'):m==='PTS'?state.campuses.filter(x=>x.type==='Swasta'):[]};
+const modeItems=()=>{const m=selectedMode();return m==='PTN'?state.campuses.filter(x=>x.type==='Negeri'):m==='PTS'?state.campuses.filter(x=>x.type==='Swasta'):state.campuses};
 function refreshStatus(){
  const m=selectedMode();
  if(m==='UT')status.textContent=state.utLoaded?'Indeks UT tersedia: '+state.ut.length.toLocaleString('id-ID')+' entri mata kuliah S1. Semester dan jalur RPL dikonfirmasi berdasarkan kurikulum mahasiswa.':'Indeks UT belum dapat dimuat; input nama dan kode mata kuliah tetap tersedia.';
- else status.textContent=state.loaded?'Tersedia pencarian '+modeItems().length.toLocaleString('id-ID')+' kampus '+(m==='PTN'?'negeri':'swasta')+' dari direktori referensi. Fakultas dan kurikulum per semester diisi manual bila tidak tercatat.':'Indeks kampus belum dapat dimuat. Semua kolom tetap bisa diisi manual untuk diverifikasi.';
+ else status.textContent=state.loaded?'Pilih dari '+modeItems().length.toLocaleString('id-ID')+' kampus dalam indeks '+(m==='PTN'?'PTN':m==='PTS'?'PTS':'seluruh Indonesia')+'. Ketik untuk mencari atau klik kolom untuk melihat opsi.':'Indeks kampus belum dapat dimuat. Nama kampus dan prodi dapat diisi manual untuk verifikasi admin.';
 }
-function rank(arr,q,extract){return arr.filter(x=>norm(extract(x)).includes(q)).sort((a,b)=>Number(!norm(extract(a)).startsWith(q))-Number(!norm(extract(b)).startsWith(q))||String(extract(a)).localeCompare(String(extract(b)),'id')).slice(0,18)}
+function rank(arr,q,extract){return arr.filter(x=>!q||norm(extract(x)).includes(q)).sort((a,b)=>Number(!norm(extract(a)).startsWith(q))-Number(!norm(extract(b)).startsWith(q))||String(extract(a)).localeCompare(String(extract(b)),'id')).slice(0,18)}
 function campusSearch(){
  if(selectedMode()==='UT'){popups.campus.hidden=true;return}
  if(state.campus&&campus.value===state.campus.name){popups.campus.hidden=true;return}
  state.campus=null;state.program=null;
- const q=norm(campus.value);if(q.length<2){popups.campus.hidden=true;return}
- displayMatches(campus,rank(modeItems(),q,x=>x.name+' '+x.city+' '+x.province+' '+x.id),x=>[x.name,[x.type,x.city||x.province].filter(Boolean).join(' · ')],x=>{state.campus=x;campus.value=x.name;faculty.value='';study.value='';course.value='';code.value='';study.focus()});
+ const q=norm(campus.value);
+ displayMatches(campus,rank(modeItems(),q,x=>x.name+' '+x.city+' '+x.province+' '+x.id),x=>[x.name,[x.type,x.city||x.province].filter(Boolean).join(' · ')],x=>{state.campus=x;campus.value=x.name;study.value='';course.value='';code.value='';study.focus()});
 }
 function programSearch(){
  if(state.program && study.value===state.program.name+' ('+state.program.level+')'){popups.programStudy.hidden=true;return}
  state.program=null;const q=norm(study.value);
  if(selectedMode()==='UT'){
-  if(q.length<2){popups.programStudy.hidden=true;return}
-  const prodi=[...new Set(state.ut.filter(x=>norm(x.prodi).includes(q)).map(x=>x.prodi))].slice(0,18);
-  displayMatches(study,prodi,x=>[x,'Program studi S1 UT'],x=>{study.value=x;const found=state.ut.find(v=>v.prodi===x);if(found){faculty.value=FACULTIES[found.fac]||found.fac;}course.value='';code.value='';});
+  const prodi=[...new Set(state.ut.filter(x=>!q||norm(x.prodi).includes(q)).map(x=>x.prodi))].sort((a,b)=>a.localeCompare(b,'id')).slice(0,18);
+  displayMatches(study,prodi,x=>[x,'Program studi S1 UT'],x=>{study.value=x;course.value='';code.value='';});
   return
  }
  if(!state.campus){popups.programStudy.hidden=true;return}
@@ -70,21 +67,20 @@ function programSearch(){
 }
 function utCoursesFiltered(q){
  const qnorm=norm(q);if(qnorm.length<2)return[];
- const p=norm(study.value);const f=Object.keys(FACULTIES).find(k=>faculty.value===FACULTIES[k]);
- const filtered=state.ut.filter(x=>(norm(x.name).includes(qnorm)||norm(x.code).includes(qnorm))&&(!f||x.fac===f));
+ const p=norm(study.value);
+ const filtered=state.ut.filter(x=>(norm(x.name).includes(qnorm)||norm(x.code).includes(qnorm)));
  return filtered.sort((a,b)=>Number(!(p&&norm(a.prodi)===p))-Number(!(p&&norm(b.prodi)===p))).slice(0,18)
 }
-function selectCourse(item){state.course=item;course.value=item.name;code.value=item.code;const fac=FACULTIES[item.fac];if(fac&&!faculty.value)faculty.value=fac;if(!study.value)study.value=item.prodi;}
+function selectCourse(item){state.course=item;course.value=item.name;code.value=item.code;if(!study.value)study.value=item.prodi;}
 function courseSearch(which){
  if(selectedMode()!=='UT'||utMode()==='semester'){popups[which.id].hidden=true;return}
  const list=utCoursesFiltered(which.value);
- displayMatches(which,list,x=>[x.code+' — '+x.name,x.prodi+' · '+(FACULTIES[x.fac]||x.fac)],selectCourse);
+ displayMatches(which,list,x=>[x.code+' — '+x.name,x.prodi],selectCourse);
 }
 campus.addEventListener('input',campusSearch);campus.addEventListener('focus',campusSearch);
 study.addEventListener('input',programSearch);study.addEventListener('focus',programSearch);
 course.addEventListener('input',()=>courseSearch(course));course.addEventListener('focus',()=>courseSearch(course));
 code.addEventListener('input',()=>courseSearch(code));code.addEventListener('focus',()=>courseSearch(code));
-const utFacultyChoices=()=>{const list=$('facultyOptions');list.replaceChildren();if(selectedMode()==='UT')for(const name of availableUT){const o=document.createElement('option');o.value=name;list.appendChild(o)}};
 function resetSemester(){
  semester.replaceChildren();semester.add(new Option('Pilih semester',''));
  for(let i=1;i<=8;i++)semester.add(new Option('Semester '+i,String(i)));
@@ -94,10 +90,10 @@ function resetSemester(){
 }
 function changeMode(){
  const m=selectedMode();state.campus=state.program=state.course=null;
- campus.value=m==='UT'?'Universitas Terbuka':'';campus.readOnly=m==='UT';faculty.value='';study.value='';code.value='';course.value='';details.value='';pathway.value='Reguler';resetSemester();utFacultyChoices();
+ campus.value=m==='UT'?'Universitas Terbuka':'';campus.readOnly=m==='UT';study.value='';code.value='';course.value='';details.value='';pathway.value='Reguler';resetSemester();
  for(const el of Object.values(popups))el.hidden=true;
- campus.placeholder=m==='UT'?'Universitas Terbuka':'Ketik nama kampus '+(m==='PTN'?'negeri':'swasta')+' untuk mencari';
- $('formTitle').textContent='Cari layanan '+({UT:'Universitas Terbuka',PTN:'Kampus Negeri (PTN)',PTS:'Kampus Swasta (PTS)'}[m]);
+ campus.placeholder=m==='UT'?'Universitas Terbuka':'Ketik nama kampus atau klik untuk memilih';
+ $('formTitle').textContent='Konsultasi '+({SEMUA:'Seluruh Kampus Indonesia',UT:'Universitas Terbuka',PTN:'Kampus Negeri (PTN)',PTS:'Kampus Swasta (PTS)'}[m]);
  study.placeholder=m==='UT'?'Cari program studi S1 UT':'Pilih kampus lalu cari program studi';
  course.placeholder=m==='UT'?'Cari nama mata kuliah UT':'Masukkan nama mata kuliah atau topik';
  code.placeholder=m==='UT'?'Cari kode mata kuliah UT':'Kode mata kuliah (bila diketahui)';
@@ -106,10 +102,9 @@ function changeMode(){
 document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>queueMicrotask(changeMode)));
 const specialUT=()=>{const semesterPackage=selectedMode()==='UT'&&utMode()==='semester';course.required=!semesterPackage;if(semesterPackage){course.value='Paket Semester UT';code.value='';service.value='Paket Semester UT';}else if(course.value==='Paket Semester UT'){course.value='';}};
 document.querySelectorAll('.ut-option').forEach(el=>el.addEventListener('click',()=>{queueMicrotask(()=>{specialUT();syncSummary()})}));
-faculty.addEventListener('change',()=>{state.course=null;course.value='';code.value='';});
 function syncSummary(){
  const el=$('summaryText');if(!el)return;
- el.textContent=[label('Pemesan',$('customerName').value),label('WA',$('customerWhatsApp').value),label('Jalur kampus',selectedMode()),label('Kampus',campus.value),label('Fakultas',faculty.value),label('Prodi',study.value),label('Jalur kuliah',pathway.value),label('Semester',semester.value),label('Kode matkul',code.value),label('Mata kuliah',course.value),label('Layanan',service.value)].join(' • ');
+ el.textContent=[label('Pemesan',$('customerName').value),label('WA',$('customerWhatsApp').value),label('Jalur kampus',selectedMode()),label('Kampus',campus.value),label('Prodi',study.value),label('Jalur kuliah',pathway.value),label('Semester',semester.value),label('Kode matkul',code.value),label('Mata kuliah',course.value),label('Layanan',service.value)].join(' • ');
 }
 form.addEventListener('input',syncSummary);form.addEventListener('change',syncSummary);
 const submit=form.querySelector('button[type=submit]');submit.textContent='Kirim rincian ke WhatsApp Admin ↗';
@@ -125,7 +120,7 @@ form.addEventListener('submit',event=>{
  'Halo Kak Fazry, saya ingin konsultasi layanan HIZVENA.','',
  label('Nama pemesan',name),label('Nomor WhatsApp pemesan',phone),
  label('Kategori kampus',selectedMode()),label('Nama kampus',campus.value.trim()),
- label('Fakultas',faculty.value.trim()),label('Program studi',study.value.trim()),
+ label('Program studi',study.value.trim()),
  label('Jalur perkuliahan',pathway.value),label('Semester',semester.value),
  label('Kode mata kuliah',code.value.trim()),label('Mata kuliah/topik',course.value.trim()),
  label('Layanan',service.value),label('Rincian kebutuhan',details.value.trim()||'-'),'',
