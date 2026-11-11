@@ -11,7 +11,7 @@ const requiredAssets = [
   'assets/design-v2.css', 'assets/design-v2.js',
   'assets/directory-v3.css', 'assets/directory-v8.js',
   'assets/design-v4.css', 'assets/polish-v5.css',
-  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/final-v10.css', 'assets/public-v11.css', 'assets/catalog-v11.js', 'assets/hero-campus-natural.jpg',
+  'assets/signature-v6.css', 'assets/professional-v8.css', 'assets/final-v10.css', 'assets/public-v11.css', 'assets/catalog-v11.js', 'assets/customer-journey-v15.js', 'assets/hero-campus-natural.jpg',
   'assets/hizvena-favicon.png',
 ];
 for (const asset of requiredAssets) {
@@ -80,3 +80,15 @@ assert.ok(html.includes('id="testimoni" hidden'),'Testimonial gallery should be 
 assert.ok(html.includes('id="testimonialLightbox"'),'Lightbox missing');
 assert.ok(source('assets/testimonials-v12.js').includes('privacyReviewed===true'),'Privacy gate missing');
 assert.ok(html.includes('assets/testimonials-v12.css'),'Gallery stylesheet missing');
+
+// V15 customer journey integration assertions.
+assert.ok(html.includes('id="orderReviewDialog"'), 'Missing consultation summary dialog');
+assert.ok(html.includes('id="cara-pemesanan"'), 'Missing order process anchor');
+assert.ok(html.includes('id="academicDeadline"'), 'Missing optional academic deadline');
+assert.ok(html.includes('name="designPlatform"'), 'Missing design platform field');
+const journeyJS=source('assets/customer-journey-v15.js');
+assert.ok(journeyJS.includes('window.HizvenaJourney={setServices,select,lookup,review}'), 'Customer flow API missing');
+assert.ok(source('assets/catalog-v11.js').includes('window.HizvenaJourney.select(svc)'), 'Catalog does not drive forms');
+assert.ok(source('assets/directory-v8.js').includes('window.HizvenaJourney.review('), 'Academic form not integrated');
+assert.ok(!source('assets/directory-v8.js').includes('window.confirm('), 'Remove legacy browser popup');
+assert.ok(source('assets/catalog-v11.js').includes('window.HizvenaJourney.review('), 'Design review not integrated');

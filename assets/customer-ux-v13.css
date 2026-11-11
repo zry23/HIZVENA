@@ -36,3 +36,20 @@ footer{background:#172d36}
 @media(max-width:800px){nav.open{border-bottom:1px solid #e0e7e5}.hero{padding:48px 0 56px}}
 @media(max-width:580px){.hero{padding:42px 0 48px}.service-paths{padding-top:50px}#katalog{padding-top:50px}#katalog .listing{grid-template-columns:1fr}.btn{min-height:46px}body{overflow-x:clip}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Journey V15 — integrated catalogue and accessible review */
+html{scroll-padding-top:92px}#cara-pemesanan{scroll-margin-top:98px}
+.journey-dialog{border:0;border-radius:18px;padding:0;width:min(640px,calc(100vw - 32px));max-height:min(88dvh,900px);box-shadow:0 18px 58px #152a3445;color:#263238}
+.journey-dialog::backdrop{background:#0c1b24a8}
+.journey-review{padding:24px}
+.review-head{display:flex;align-items:start;justify-content:space-between;gap:20px}
+.review-head h2{font-size:clamp(24px,3vw,31px);margin:4px 0 10px}
+.review-close{border:1px solid #cbd8d5;background:white;color:#172d36;border-radius:9px;padding:8px 12px}
+.review-data{display:grid;gap:0;margin:18px 0;max-height:min(47dvh,410px);overflow:auto;border-block:1px solid #e0e7e5}
+.review-data>div{display:grid;grid-template-columns:minmax(110px,35%) minmax(0,1fr);gap:8px;padding:10px 0;border-bottom:1px solid #e0e7e5}
+.review-data>div:last-child{border-bottom:0}
+.review-data dt{font-size:13px;font-weight:700;color:#52626a}
+.review-data dd{margin:0;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.review-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+#orderReviewNotice{font-size:14px;line-height:1.6}
+@media(max-width:520px){.journey-review{padding:17px}.review-head{gap:8px}.review-data>div{grid-template-columns:1fr;gap:2px}.review-actions{flex-direction:column}.review-actions .btn{width:100%}}
