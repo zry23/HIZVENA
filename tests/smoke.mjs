@@ -56,7 +56,7 @@ assert.equal(domain.domain_status, 'requested_not_verified_or_connected');
 console.log('HIZVENA smoke checks passed:', {campusCount,programCount,utCount});
 
 assert.ok(html.includes('Solusi Akademik dan Desain Kreatif,'), 'Requested headline');
-assert.ok(!html.includes('id="testimoni"'), 'Remove placeholder testimonials');
+assert.ok(!html.includes('Testimoni segera hadir'), 'No placeholder testimonials');
 assert.ok(html.includes('id="designConsultForm"'), 'Separate design consultation');
 assert.ok(html.includes('id="catalogDialog"'), 'Accessible catalog details');
 const newCatalog=JSON.parse(source('data/catalog-v11.json'));
