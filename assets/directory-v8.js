@@ -8,7 +8,7 @@ const selectedMode=()=>document.querySelector('[role="tab"][aria-selected="true"
 const utMode=()=>document.querySelector('.ut-option[aria-pressed="true"]')?.dataset.utMode||'fast';
 const contact=document.createElement('div');
 contact.className='contact-fields';
-contact.innerHTML='<h4>Identitas pemesan</h4><p>Data ini hanya digunakan untuk menyiapkan pesan konsultasi; formulir tidak menyimpan nomor pelanggan di website.</p><div class="fields"><label class="field">Nama lengkap pemesan <span aria-hidden="true">*</span><input id="customerName" type="text" autocomplete="name" placeholder="Masukkan nama lengkap" minlength="2" maxlength="100" required></label><label class="field">Nomor WhatsApp pemesan <span aria-hidden="true">*</span><input id="customerWhatsApp" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx atau +62xxxxxxxx" pattern="[+0-9]{10,16}" required></label></div>';
+contact.innerHTML='<h4>Identitas pemesan</h4><p>Isi nama dan nomor WhatsApp untuk konsultasi.</p><div class="fields"><label class="field">Nama lengkap pemesan<input id="customerName" type="text" autocomplete="name" placeholder="Masukkan nama lengkap" minlength="2" maxlength="100" required></label><label class="field">Nomor WhatsApp pemesan<input id="customerWhatsApp" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx atau +62xxxxxxxx" pattern="[+0-9]{10,16}" required></label></div>';
 form.querySelector('.fields').insertAdjacentElement('beforebegin',contact);
 const status=document.createElement('p'); status.className='catalog-status'; status.id='campusDatasetStatus';status.setAttribute('role','status');
 contact.insertAdjacentElement('afterend',status);
@@ -42,8 +42,8 @@ async function initData(){
 const modeItems=()=>{const m=selectedMode();return m==='PTN'?state.campuses.filter(x=>x.type==='Negeri'):m==='PTS'?state.campuses.filter(x=>x.type==='Swasta'):state.campuses};
 function refreshStatus(){
  const m=selectedMode();
- if(m==='UT')status.textContent=state.utLoaded?'Indeks UT tersedia: '+state.ut.length.toLocaleString('id-ID')+' entri mata kuliah S1. Semester dan jalur RPL dikonfirmasi berdasarkan kurikulum mahasiswa.':'Indeks UT belum dapat dimuat; input nama dan kode mata kuliah tetap tersedia.';
- else status.textContent=state.loaded?'Pilih dari '+modeItems().length.toLocaleString('id-ID')+' kampus dalam indeks '+(m==='PTN'?'PTN':m==='PTS'?'PTS':'seluruh Indonesia')+'. Ketik untuk mencari atau klik kolom untuk melihat opsi.':'Indeks kampus belum dapat dimuat. Nama kampus dan prodi dapat diisi manual untuk verifikasi admin.';
+ if(m==='UT')status.textContent=state.utLoaded?'Mata kuliah UT tersedia untuk dicari berdasarkan nama atau kode.':'Masukkan kode atau nama mata kuliah UT.';
+ else status.textContent=state.loaded?'Cari dari '+modeItems().length.toLocaleString('id-ID')+' kampus dalam direktori HIZVENA.':'Daftar kampus tidak tersedia. Isi nama kampus dan prodi secara manual.';
 }
 function rank(arr,q,extract){return arr.filter(x=>!q||norm(extract(x)).includes(q)).sort((a,b)=>Number(!norm(extract(a)).startsWith(q))-Number(!norm(extract(b)).startsWith(q))||String(extract(a)).localeCompare(String(extract(b)),'id')).slice(0,18)}
 function campusSearch(){
@@ -93,7 +93,7 @@ function changeMode(){
  campus.value=m==='UT'?'Universitas Terbuka':'';campus.readOnly=m==='UT';study.value='';code.value='';course.value='';details.value='';pathway.value='Reguler';resetSemester();
  for(const el of Object.values(popups))el.hidden=true;
  campus.placeholder=m==='UT'?'Universitas Terbuka':'Ketik nama kampus atau klik untuk memilih';
- $('formTitle').textContent='Konsultasi '+({SEMUA:'Seluruh Kampus Indonesia',UT:'Universitas Terbuka',PTN:'Kampus Negeri (PTN)',PTS:'Kampus Swasta (PTS)'}[m]);
+ $('formTitle').textContent='Konsultasi '+({SEMUA:'Semua Kampus',UT:'Universitas Terbuka',PTN:'Kampus Negeri',PTS:'Kampus Swasta'}[m]);
  study.placeholder=m==='UT'?'Cari program studi S1 UT':'Pilih kampus lalu cari program studi';
  course.placeholder=m==='UT'?'Cari nama mata kuliah UT':'Masukkan nama mata kuliah atau topik';
  code.placeholder=m==='UT'?'Cari kode mata kuliah UT':'Kode mata kuliah (bila diketahui)';
@@ -107,7 +107,7 @@ function syncSummary(){
  el.textContent=[label('Pemesan',$('customerName').value),label('WA',$('customerWhatsApp').value),label('Jalur kampus',selectedMode()),label('Kampus',campus.value),label('Prodi',study.value),label('Jalur kuliah',pathway.value),label('Semester',semester.value),label('Kode matkul',code.value),label('Mata kuliah',course.value),label('Layanan',service.value)].join(' • ');
 }
 form.addEventListener('input',syncSummary);form.addEventListener('change',syncSummary);
-const submit=form.querySelector('button[type=submit]');submit.textContent='Kirim rincian ke WhatsApp Admin ↗';
+const submit=form.querySelector('button[type=submit]');submit.textContent='Konsultasi via WhatsApp';
 form.addEventListener('submit',event=>{
  event.preventDefault();event.stopImmediatePropagation();
  const name=$('customerName').value.trim(),phone=$('customerWhatsApp').value.replace(/[\s()-]/g,'');
