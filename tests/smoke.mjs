@@ -67,7 +67,9 @@ assert.ok(source('assets/directory-v8.js').includes("window.confirm("),'Academic
 // Testimonial feature must remain hidden until permission-reviewed images exist.
 const tData=JSON.parse(source('data/testimonials.json'));
 assert.ok(Array.isArray(tData.items),'Testimonial manifest missing');
-assert.equal(tData.items.length,0,'Unconsented screenshots must not be public');
+assert.equal(tData.items.length,7,'Seven individual testimonial records expected');
+assert.ok(tData.items.every(x=>x.approved===false&&x.published===false),'Unconsented testimonials must not be published');
+assert.equal(new Set(tData.items.map(x=>x.id)).size,7,'Each testimonial requires its own ID');
 assert.ok(html.includes('id="testimoni" hidden'),'Testimonial gallery should be hidden before approval');
 assert.ok(html.includes('id="testimonialLightbox"'),'Lightbox missing');
 assert.ok(source('assets/testimonials-v12.js').includes('privacyReviewed===true'),'Privacy gate missing');

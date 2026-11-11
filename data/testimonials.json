@@ -1,5 +1,83 @@
 {
-  "version": 1,
-  "notice": "Tambahkan hanya gambar yang telah disetujui pemiliknya untuk publikasi dan telah disamarkan informasi pribadi/transaksinya. Simpan gambar di assets/testimonials/.",
-  "items": []
+  "version": 2,
+  "notice": "Setiap item terpisah. File asli disimpan pada paket review privat, TIDAK di repo publik. Semua item tidak tampil sebelum izin publikasi diperoleh dan aset privat disensor serta diunggah oleh pengelola.",
+  "items": [
+    {
+      "id": "testimoni-01",
+      "src": "./assets/testimonials/testimoni-01.webp",
+      "title": "Chat pelanggan — konsultasi bank soal",
+      "caption": "Chat Pelanggan",
+      "alt": "Screenshot chat pelanggan yang telah disensor",
+      "order": 1,
+      "approved": false,
+      "privacyReviewed": true,
+      "published": false
+    },
+    {
+      "id": "testimoni-02",
+      "src": "./assets/testimonials/testimoni-02.webp",
+      "title": "Chat pelanggan — respons layanan",
+      "caption": "Chat Pelanggan",
+      "alt": "Screenshot chat pelanggan yang telah disensor",
+      "order": 2,
+      "approved": false,
+      "privacyReviewed": true,
+      "published": false
+    },
+    {
+      "id": "testimoni-03",
+      "src": "./assets/testimonials/testimoni-03.webp",
+      "title": "Dokumentasi hasil penilaian tugas",
+      "caption": "Hasil Akademik",
+      "alt": "Screenshot hasil akademik yang telah disensor",
+      "order": 3,
+      "approved": false,
+      "privacyReviewed": true,
+      "published": false
+    },
+    {
+      "id": "testimoni-04",
+      "src": "./assets/testimonials/testimoni-04.webp",
+      "title": "Umpan balik diskusi akademik",
+      "caption": "Hasil Akademik",
+      "alt": "Screenshot hasil akademik yang telah disensor",
+      "order": 4,
+      "approved": false,
+      "privacyReviewed": true,
+      "published": false
+    },
+    {
+      "id": "testimoni-05",
+      "src": "./assets/testimonials/testimoni-05.webp",
+      "title": "Umpan balik forum diskusi",
+      "caption": "Hasil Akademik",
+      "alt": "Screenshot hasil akademik yang telah disensor",
+      "order": 5,
+      "approved": false,
+      "privacyReviewed": true,
+      "published": false
+    },
+    {
+      "id": "testimoni-06",
+      "src": "./assets/testimonials/testimoni-06.webp",
+      "title": "Chat pelanggan — dokumentasi layanan",
+      "caption": "Chat Pelanggan",
+      "alt": "Screenshot chat pelanggan yang telah disensor",
+      "order": 6,
+      "approved": false,
+      "privacyReviewed": true,
+      "published": false
+    },
+    {
+      "id": "testimoni-07",
+      "src": "./assets/testimonials/testimoni-07.webp",
+      "title": "Chat progres pendampingan",
+      "caption": "Progres Layanan",
+      "alt": "Screenshot progres layanan yang telah disensor",
+      "order": 7,
+      "approved": false,
+      "privacyReviewed": true,
+      "published": false
+    }
+  ]
 }
