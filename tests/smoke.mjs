@@ -166,3 +166,7 @@ assert.ok(source('assets/wizard-v18.js').includes("setup('designConsultForm','de
 assert.ok(source('assets/wizard-v18.js').includes("type='button'"),'Wizard buttons must not submit');
 assert.ok(source('assets/customer-journey-v15.js').includes('window.HizvenaWizard?.openDetails'),'Catalogue selection must open details');
 assert.ok(!source('assets/wizard-v18.js').includes('localStorage'),'Wizard must not persist personal information');
+
+assert.ok(source('assets/directory-v8.js').includes("const ensureDirectory=()=>"),'Academic index lazy trigger missing');
+assert.ok(source('assets/directory-v8.js').includes("IntersectionObserver"),'Academic index viewport trigger missing');
+assert.ok(!source('assets/directory-v8.js').includes('changeMode();initData();'),'Eager campus-index load must remain disabled');

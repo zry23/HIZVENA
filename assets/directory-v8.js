@@ -129,5 +129,27 @@ form.addEventListener('submit',event=>{
 },true);
 $('customerName').addEventListener('input',()=> $('customerName').setCustomValidity(''));
 $('customerWhatsApp').addEventListener('input',()=> $('customerWhatsApp').setCustomValidity(''));
-changeMode();initData();
+changeMode();
+// Do not fetch/decompress 3 large campus indices during first homepage paint.
+// Fetch on relevant scroll or form interaction. Manual entry still works offline.
+let directoryRequest=null;
+const ensureDirectory=()=>{
+ if(!directoryRequest)directoryRequest=initData().then(()=>{
+  const focused=document.activeElement;
+  if(focused===campus)campusSearch();
+  else if(focused===study)programSearch();
+  else if(focused===course)courseSearch(course);
+  else if(focused===code)courseSearch(code);
+ });
+ return directoryRequest;
+};
+form.addEventListener('focusin',()=>{void ensureDirectory()});
+const section=document.getElementById('akademik');
+if(section&&'IntersectionObserver' in window){
+ const observer=new IntersectionObserver((entries)=>{
+  if(entries.some(x=>x.isIntersecting)){observer.disconnect();void ensureDirectory()}
+ },{rootMargin:'250px 0px'});
+ observer.observe(section);
+}
+document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>{void ensureDirectory()}));
 })();

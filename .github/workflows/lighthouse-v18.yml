@@ -28,7 +28,9 @@ jobs:
       - name: Measure mobile Lighthouse
         run: |
           mkdir -p audit-artifacts
-          npx lighthouse http://127.0.0.1:8765/ --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path=./audit-artifacts/lighthouse-mobile.json --quiet --max-wait-for-load=25000
+          for sample in 1 2 3; do
+            npx lighthouse http://127.0.0.1:8765/ --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path="./audit-artifacts/lighthouse-mobile-${sample}.json" --quiet --max-wait-for-load=25000
+          done
       - name: Measure desktop Lighthouse
         run: |
           npx lighthouse http://127.0.0.1:8765/ --preset=desktop --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --output=json --output-path=./audit-artifacts/lighthouse-desktop.json --quiet --max-wait-for-load=25000
