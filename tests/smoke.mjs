@@ -80,3 +80,16 @@ assert.ok(html.includes('id="testimoni" hidden'),'Testimonial gallery should be 
 assert.ok(html.includes('id="testimonialLightbox"'),'Lightbox missing');
 assert.ok(source('assets/testimonials-v12.js').includes('privacyReviewed===true'),'Privacy gate missing');
 assert.ok(html.includes('assets/testimonials-v12.css'),'Gallery stylesheet missing');
+
+// HIZVENA social links V16 — isolated production release.
+assert.ok(html.includes('id="sosial-media"'), 'Social media section missing');
+for (const url of ['https://www.tiktok.com/@hizvena_id','https://www.instagram.com/hizvena.id/','https://www.youtube.com/@hizvena_id']) {
+ assert.ok(html.includes('href="'+url+'"'), 'Missing social media URL '+url);
+}
+assert.ok(html.includes('href="#sosial-media"'), 'Missing footer social link');
+assert.ok(html.includes('href="./assets/social-v16.css"'), 'Missing social CSS');
+const socialCss=source('assets/social-v16.css');
+assert.ok(socialCss.includes('grid-template-columns:repeat(3,minmax(0,1fr))'),'Desktop social layout missing');
+assert.ok(socialCss.includes('@media(max-width:950px)'),'Tablet breakpoint missing');
+assert.ok(socialCss.includes('@media(max-width:620px)'),'Mobile breakpoint missing');
+assert.equal((html.match(/class="social-connect-card"/g)||[]).length,3, 'Exactly three social cards expected');
