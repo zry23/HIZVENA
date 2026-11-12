@@ -1,0 +1,26 @@
+/* V17 brand treatment - scoped on top of preserved original styles */
+:root{--navy:#14263B;--violet:#14263B;--pale:#F7F5F0;--cyan:#B89A68;--gray:#526177}
+html{scroll-padding-top:92px}body{color:#14263B;font-family:Inter,system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:"Plus Jakarta Sans",Inter,system-ui,sans-serif}
+header{background:rgba(255,255,255,.98);border-bottom:1px solid #e4e8ea}
+header nav{gap:clamp(8px,1.1vw,17px)}header nav a{font-size:13px}
+.hero{background:#F7F5F0;padding:clamp(55px,7vw,90px) 0}
+.hero h1{font-size:clamp(33px,4.4vw,58px);line-height:1.16;letter-spacing:-.04em}
+.hero h1 span{color:#526177}.hero p{line-height:1.7;max-width:660px}
+.eyebrow{color:#806433}.btn,.tab[aria-selected=true]{background:#14263B;border:1px solid #14263B;color:#fff}
+.btn.secondary{background:#fff;color:#14263B;border-color:#9caab8}
+.card,.path-card,.form{border-radius:16px;border-color:#e1e6eb;box-shadow:0 3px 14px rgba(20,38,59,.04)}
+#catalogSort{border:1px solid #cbd8d5;background:#fff;color:#14263B;padding:11px 14px;min-height:46px;border-radius:12px}
+.catalog-controls{flex-wrap:wrap}
+.portfolio-v17{background:white;padding:clamp(55px,6vw,85px) 0;scroll-margin-top:95px}
+.portfolio-empty{background:#F7F5F0;border:1px solid #e5e0d6;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(22px,4vw,42px)}
+.portfolio-empty p{max-width:640px}.portfolio-empty .btn{flex:none}
+#cara-pemesanan .steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+#cara-pemesanan .step{border-top-color:#B89A68}
+#cara-pemesanan .step b{color:#806433}
+.social-connect{background:#F7F5F0}
+footer{background:#14263B}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #957745;outline-offset:3px}
+@media(max-width:800px){#cara-pemesanan .steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){#cara-pemesanan .steps{grid-template-columns:1fr}.portfolio-empty{flex-direction:column;align-items:stretch}.portfolio-empty .btn{width:100%}.catalog-controls>*{max-width:100%;width:100%}.hero h1{letter-spacing:-.03em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
