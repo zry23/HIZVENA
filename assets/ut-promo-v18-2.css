@@ -1,0 +1,20 @@
+/* V18.2 dual UT promotion – presentation-only, existing site remains functional */
+.ut-promo{background:linear-gradient(135deg,#f7f5f0 0%,#f2f6f7 100%);padding:64px 0}
+.ut-promo .intro{max-width:720px}
+.ut-promo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:25px}
+.ut-promo-card{border:1px solid #dbe1e4;border-radius:23px;background:#fff;box-shadow:0 14px 40px #14263b13;padding:clamp(22px,3vw,32px);min-width:0;display:flex;flex-direction:column;gap:10px}
+.ut-promo-label{color:#775b30;font-size:12px;letter-spacing:.07em;font-weight:850;text-transform:uppercase}
+.ut-promo-card h3{font-size:clamp(23px,2.3vw,31px);color:#14263b;margin:0}
+.ut-promo-card p{margin:0}
+.ut-promo-old{color:#667488;text-decoration:line-through;font-weight:650}
+.ut-promo-new{font-size:clamp(31px,3.2vw,43px);line-height:1.1;font-weight:850;color:#176c55}
+.ut-promo-save{font-size:13px;color:#176c55;font-weight:800}
+.ut-promo-card .btn{margin-top:auto;align-self:flex-start;max-width:100%;text-align:center}
+.ut-preview{display:flex;align-items:center;gap:16px;background:#f6f7f7;border:1px solid #dce3e5;border-radius:16px;padding:14px;margin:5px 0 12px;min-width:0}
+.ut-preview img{width:89px;height:121px;object-fit:contain;flex:none;box-shadow:0 6px 14px #14263b1b;background:#fff}
+.ut-preview-detail{min-width:0;font-size:13px;line-height:1.5;color:#4c5d70}
+.ut-preview-detail strong{display:block;color:#14263b;font-size:15px}
+.ut-preview-note{font-size:12px;color:#526177;line-height:1.5}
+.ut-promo-card button:focus-visible{outline:3px solid #B89A68;outline-offset:4px}
+@media(max-width:740px){.ut-promo{padding:52px 0}.ut-promo-grid{grid-template-columns:1fr}.ut-promo-card .btn{width:100%;align-self:stretch}.ut-preview img{width:76px;height:104px}}
+@media(max-width:350px){.ut-preview{gap:10px;padding:10px}.ut-preview img{width:65px;height:90px}}
