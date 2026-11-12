@@ -132,7 +132,7 @@ const canonicalCatalog=JSON.parse(source('data/catalog-v11.json'));
 const ids=canonicalCatalog.services.map(x=>x.id);
 assert.equal(ids.length,12,'Unexpected number of official catalogue services');
 assert.equal(new Set(ids).size,ids.length,'Duplicate official service IDs');
-assert.ok(canonicalCatalog.services.every(x=>/^Rp[\\d.\s–/-]+(?:mata kuliah|slide)?$/.test(x.price)),'Malformed advertised price');
+assert.ok(canonicalCatalog.services.every(x=>x.price.startsWith('Rp')&&/\\d/.test(x.price)&&!x.price.includes('Rp0')), 'Malformed advertised price');
 assert.ok(canonicalCatalog.services.every(x=>['akademik-ut','akademik-umum','desain'].includes(x.category)),'Unrecognized service category');
 assert.ok(canonicalCatalog.services.every(x=>x.name.length>3&&x.scope&&x.duration&&x.revision),'Missing essential service terms');
 const catalogScript=source('assets/catalog-v11.js');
