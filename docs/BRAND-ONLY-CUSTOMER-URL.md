@@ -1,13 +1,16 @@
-# HIZVENA — brand-only customer URL fallback
+# HIZVENA — Customer URL status (12 November 2026)
 
-Goal: a shareable public URL without the name of the owner or an AI platform label.
+## Verified functioning public URLs
+- **GitHub Pages candidate**: https://zry23.github.io/HIZVENA/ — **PASS** for HTTPS homepage, pricing, 12 catalogue services, public cover-only metadata, CSS and JS in [live verification run 43197717010](https://github.com/zry23/HIZVENA/actions/runs/43197717010).
+- **Existing Cloudflare Worker**: https://hizvena-id.hizryabdilah23.workers.dev/ — **PASS** on the same live verification run.
 
-**Candidate:** https://zry23.github.io/HIZVENA/
+The GitHub Pages URL contains `zry23`; it is **not** the owner's requested final URL consisting only of the HIZVENA brand. Do not claim it is a brand-only hostname.
 
-Status: **NOT VERIFIED / DO NOT SHARE AS ACTIVE until its HTTPS content is confirmed**. This is GitHub Pages, not a registered custom domain. Its hostname has GitHub branding but contains neither the personal name the owner wants removed nor "AI".
+## Remaining blocker — brand-only address
+No `hizvena.com` DNS ownership/Cloudflare custom-domain activation has been verified; `hizvena.pages.dev` was not verified as provisioned. GitHub cannot register a domain or change Cloudflare account settings using the available connector. Existing Workers named `hizvena` and `hizvena-web` do not themselves provide an owner-name-free URL because Workers inherit the account's `workers.dev` subdomain.
 
-Workflow: `.github/workflows/brand-only-pages.yml` packages public HTML, assets and data only; blocks all PDF files to avoid leaking paid question banks. It can deploy only after **GitHub repository Settings → Pages → Source: GitHub Actions** has been enabled. A successful workflow alone should be paired with an HTTPS, asset, catalogue and customer flow check.
+**Owner/provider step:** in an authorized Cloudflare account, connect a domain the business owns to the existing production Worker; alternatively, deploy a true Cloudflare Pages application through the legacy Pages flow with an available project name. Do **not** create a fourth Worker. Verify HTTPS, complete page rendering and canonical redirects **before** moving customers.
 
-Critical caveat: current canonical and sitemap still point to the working Cloudflare origin. Do not change SEO canonical or redirect until the new address is active and its content is tested. Keep Cloudflare as fallback to prevent customer downtime. Never claim the proposed URL is live without checking it.
+The GitHub Pages build workflow `.github/workflows/brand-only-pages.yml` is operational. The newly added `.github/workflows/customer-site-readiness.yml` monitors both published URLs daily and on request.
 
-If GitHub Pages rejects deployment as disabled, activate it in repo Settings; do not falsify deployment status.
+Current SEO canonical and sitemap still identify the legacy Cloudflare origin. Preserve these until a brand-only hostname is actually active and migration is reviewed. No private paid PDFs are included in public deploys.
