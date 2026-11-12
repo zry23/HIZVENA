@@ -83,6 +83,8 @@ try{
    assert.ok(await form.locator('.v18-details').isVisible());
    await form.locator('#customerName').fill('Pelanggan Akademik');
    await form.locator('#customerWhatsApp').fill('081234567892');
+   // General-campus promo requires an explicit campus instead of assuming UT.
+   await form.locator('#campus').fill('Universitas Terbuka');
    await form.locator('#programStudy').fill('Ilmu Komunikasi');
    await form.locator('#semester').selectOption('2');
    await form.locator('#course').fill('Komunikasi Dasar');
