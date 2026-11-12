@@ -27,7 +27,7 @@ Baseline V17 SHA: `5d28eb9af67fc6d630e9a271ee4ecc41fc16f814`. Do not rebase prod
 - Portfolio remains honest placeholder until original permissions-cleared works provided.
 
 ## QA and release gate
-- Automated smoke and JS syntax: PENDING CI.
+- Automated smoke and JS syntax: PASS on commit `ef1a65ca6ec6145e6633f8daeb4fac19e0472aa7`; workflow run https://github.com/zry23/HIZVENA/actions/runs/43151032552.
 - Full phone 320/375/390, tablet 768/1024, desktop 1440/1920: NOT TESTED.
 - Manual back/forward, keyboard, real WhatsApp, Safari/Firefox/Edge: NOT TESTED.
 - Lighthouse Performance >=90, Accessibility/SEO/Best Practices >=95: NOT TESTED, no score claimed.
@@ -36,3 +36,12 @@ Baseline V17 SHA: `5d28eb9af67fc6d630e9a271ee4ecc41fc16f814`. Do not rebase prod
 - No deployment or staging URL claimed. **Do not merge V18 into production until QA and release criteria met.**
 
 Rollback: revert V18 merge commit or redeploy V17 SHA `5d28eb9af67fc6d630e9a271ee4ecc41fc16f814`. No database migration or environment variable changes.
+
+## Evidence and scoring status
+The requested 95/100 is **a target, not a measured score**. Scores for UI/mobile, catalog, form, trust, social, performance and security remain UNRATED until browser, content-permission, accessibility and security checks are performed. GitHub static CI alone cannot certify Lighthouse scores, privacy consent, or production readiness.
+
+## Content and operations still required
+- Obtain 6 approved real portfolio items (0 verified portfolio entries in the public repository at audit time); retain honest empty state meanwhile.
+- Confirm customer consent for each of the 7 existing screenshot testimonials before future republishing or new promotion.
+- Confirm whether a managed CMS/API, business email and secure upload service exist; no integration without an explicit contract and access.
+- Validate all 3 user journeys in browsers at 320, 375, 390, 768, 1024, 1440 and 1920 px; verify that field edits survive back navigation and WhatsApp opens the correct account once.
