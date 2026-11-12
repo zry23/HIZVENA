@@ -45,7 +45,7 @@ assert.ok(!html.includes('id="faculty"'),'Faculty input should be removed');
 assert.ok(!html.includes('<span aria-hidden="true">*</span>'),'Visible required-field star markers should be removed');
 assert.ok(!formJS.includes('<span aria-hidden="true">*</span>'),'Dynamic required-field stars should be removed');
 assert.ok(!html.includes('class="hero-microproof"'),'Decorative hero symbols should be removed');
-assert.ok(html.includes('Solusi Tepat untuk Kebutuhan'),'Requested hero copy missing');
+assert.ok(html.includes('Solusi Akademik dan Kreatif yang'),'Requested hero copy missing');
 assert.ok(html.includes('data-mode="SEMUA"'),'Missing all-campus tab');
 assert.ok(formJS.includes('state.campuses};'),'All-campus option should cover the full dataset');
 assert.ok(source('assets/customer-journey-v15.js').includes('window.location.href=url;'),'Review flow must open admin WhatsApp');
@@ -55,7 +55,7 @@ assert.equal(domain.requested_domain, 'hizvena.com');
 assert.equal(domain.domain_status, 'requested_not_verified_or_connected');
 console.log('HIZVENA smoke checks passed:', {campusCount,programCount,utCount});
 
-assert.ok(html.includes('Solusi Tepat untuk Kebutuhan'), 'Requested headline');
+assert.ok(html.includes('Solusi Akademik dan Kreatif yang'), 'Requested headline');
 assert.ok(!html.includes('Testimoni segera hadir'), 'No placeholder testimonials');
 assert.ok(html.includes('id="designConsultForm"'), 'Separate design consultation');
 assert.ok(html.includes('id="catalogDialog"'), 'Accessible catalog details');
@@ -119,7 +119,7 @@ assert.ok(html.includes('id="portofolio"'),'V17 portfolio missing');
 assert.ok(html.includes('id="catalogSort"'),'V17 sorting missing');
 assert.ok(source('assets/catalog-v11.js').includes("sort?.addEventListener"),'Sort not wired');
 assert.ok(html.includes('Tiga Langkah Konsultasi'),'V17 process missing');
-assert.ok(html.includes('Karya dan Hasil Layanan'),'Portfolio honest empty state missing');
+assert.ok(html.includes('Portofolio Unggulan'),'Portfolio honest empty state missing');
 assert.ok(html.includes('id="sosial-media"'),'Existing social hub missing');
 
 assert.ok(html.includes("e.key==='Escape'&&nav.classList.contains('open')"),'Mobile Escape close missing');

@@ -5,7 +5,7 @@ const flows={};
 function setup(formId,kind,selectorId){
  const form=$(formId),select=$(selectorId);if(!form||!select)return;
  const field=select.closest('label');if(!field)return;
- const sourceFields=form.querySelector('.fields');if(!sourceFields)return;
+ const sourceFields=kind==='academic'?$('campus')?.closest('.fields'):form.querySelector('.fields');if(!sourceFields)return;
  const stage1=document.createElement('div'),stage2=document.createElement('div');
  stage1.className='v18-wizard v18-choice';stage2.className='v18-wizard v18-details';stage2.hidden=true;
  stage1.setAttribute('aria-label','Tahap 1: Pilih layanan');stage2.setAttribute('aria-label','Tahap 2: Detail kebutuhan');
@@ -20,7 +20,7 @@ function setup(formId,kind,selectorId){
  const back=document.createElement('button');back.type='button';back.className='btn secondary v18-back';back.textContent='Kembali ke Pilihan Layanan';
  stage2.append(step2Header,step2Title,back);
  // Move existing form fields into the second panel; preserve bound handlers and entered values.
- const parts=[...form.children];const start=parts.indexOf(sourceFields);
+ // Existing event listeners remain attached to moved DOM nodes.
  // Academic forms insert name/phone/status before fields at runtime.
  const academicContact=kind==='academic'?form.querySelector('.contact-fields'):null;
  const insertionPoint=academicContact||sourceFields;
