@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updated": "2026-11-12",
   "visibility": "cover-only",
   "documents": [
@@ -15,6 +15,20 @@
       "cover": "./assets/cover-fsik4107.svg",
       "downloadPublic": false,
       "note": "50 soal latihan orisinal, kunci jawaban dan pembahasan; bukan soal resmi atau bocoran UAS Universitas Terbuka. File PDF lengkap tidak tersedia pada website publik."
+    },
+    {
+      "id": "fsik4309-penulisan-konten-media-baru",
+      "serviceId": "ut-bank",
+      "title": "Bank Soal Latihan UO & UTM — Penulisan Konten Media Baru",
+      "courseCode": "FSIK4309",
+      "institution": "Universitas Terbuka",
+      "academicYear": "2026/2027",
+      "questionCount": 50,
+      "pages": 21,
+      "format": "PDF",
+      "cover": "./assets/cover-fsik4309.svg",
+      "downloadPublic": false,
+      "note": "50 soal latihan orisinal dengan kunci dan pembahasan, bukan soal resmi maupun bocoran ujian. Berdasarkan tema daftar isi; belum diverifikasi terhadap BMP resmi."
     }
   ]
 }
