@@ -1,0 +1,30 @@
+name: HIZVENA customer URL live verification
+on:
+  schedule:
+    - cron: '25 1 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tests/customer-site-readiness.mjs'
+      - '.github/workflows/customer-site-readiness.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify publicly served homepage, services, prices and preview privacy
+        run: node tests/customer-site-readiness.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: customer-site-readiness
+          path: customer-site-readiness.json
+          retention-days: 14
+          if-no-files-found: ignore
