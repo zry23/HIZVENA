@@ -1,0 +1,29 @@
+name: HIZVENA custom domain readiness
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'domain-target.json'
+      - 'tests/domain-readiness.mjs'
+      - '.github/workflows/domain-readiness.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect public DNS and HTTPS, without changing infrastructure
+        run: node tests/domain-readiness.mjs
+      - name: Archive domain readiness report
+        uses: actions/upload-artifact@v4
+        with:
+          name: hizvena-domain-readiness
+          path: domain-readiness-report.json
+          retention-days: 14
