@@ -121,3 +121,7 @@ assert.ok(source('assets/catalog-v11.js').includes("sort?.addEventListener"),'So
 assert.ok(html.includes('Tiga Langkah Konsultasi'),'V17 process missing');
 assert.ok(html.includes('Karya dan Hasil Layanan'),'Portfolio honest empty state missing');
 assert.ok(html.includes('id="sosial-media"'),'Existing social hub missing');
+
+assert.ok(html.includes("e.key==='Escape'&&nav.classList.contains('open')"),'Mobile Escape close missing');
+assert.ok(html.includes("document.addEventListener('pointerdown'"),'Mobile outside-click close missing');
+assert.ok(html.includes('aria-controls="nav"'),'Mobile menu control relationship missing');
