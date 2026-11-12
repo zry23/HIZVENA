@@ -28,8 +28,8 @@ Baseline V17 SHA: `5d28eb9af67fc6d630e9a271ee4ecc41fc16f814`. Do not rebase prod
 
 ## QA and release gate
 - Automated smoke and JS syntax: PASS on commit `ef1a65ca6ec6145e6633f8daeb4fac19e0472aa7`; workflow run https://github.com/zry23/HIZVENA/actions/runs/43151032552.
-- Full phone 320/375/390, tablet 768/1024, desktop 1440/1920: NOT TESTED.
-- Manual back/forward, keyboard, real WhatsApp, Safari/Firefox/Edge: NOT TESTED.
+- Chromium automated phone 320/375/390, tablet 768/1024, desktop 1440/1920: PASS on https://github.com/zry23/HIZVENA/actions/runs/43152050484 after overflow fixes. This does not substitute cross-browser manual inspection.
+- Automated Chromium back navigation, keyboard Escape, valid design/academic consultation and WhatsApp URL interception: PASS on run 43152050484. Real WhatsApp delivery, Safari/Firefox/Edge: NOT TESTED.
 - Lighthouse Performance >=90, Accessibility/SEO/Best Practices >=95: NOT TESTED, no score claimed.
 - Backend persistence: BLOCKED, no backend present.
 - Real six portfolios: BLOCKED; no fake entries.
@@ -45,3 +45,9 @@ The requested 95/100 is **a target, not a measured score**. Scores for UI/mobile
 - Confirm customer consent for each of the 7 existing screenshot testimonials before future republishing or new promotion.
 - Confirm whether a managed CMS/API, business email and secure upload service exist; no integration without an explicit contract and access.
 - Validate all 3 user journeys in browsers at 320, 375, 390, 768, 1024, 1440 and 1920 px; verify that field edits survive back navigation and WhatsApp opens the correct account once.
+
+## Ongoing QA automation
+- PR workflow `.github/workflows/browser-v18.yml` runs headless Chromium on proposed changes, plus static workflow `verify.yml`.
+- Browser tests cover responsive widths, catalogue filters and prices, both forms, WhatsApp handoff, error states, SEO files and screenshots (for review).
+- Screenshots from the workflow are **test artifacts**, not substitutes for actual marketing portfolio assets.
+- Production deployment remains manual with release gates; no auto-merge when a test fails.

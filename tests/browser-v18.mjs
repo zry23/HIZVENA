@@ -94,6 +94,54 @@ try{
    assert.equal(await form.locator('#customerName').inputValue(),'Pelanggan Akademik');
   }finally{await page.close()}
  });
+
+ await check('Invalid design WhatsApp is rejected, no confirmation appears',async()=>{
+  const page=await openPage(375);
+  try{
+   const f=page.locator('#designConsultForm');
+   await f.locator('#designType').selectOption({label:'Poster Digital'});
+   await f.locator('.v18-choice button').click();
+   await f.locator('input[name=customerName]').fill('Pelanggan Pengujian');
+   await f.locator('input[name=customerWhatsApp]').fill('123');
+   await f.locator('textarea[name=designDetails]').fill('Brief untuk pengujian validasi');
+   await f.locator('button[type=submit]').click();
+   assert.ok(!(await page.locator('#orderReviewDialog').evaluate(el=>el.open)));
+   assert.equal(await f.locator('input[name=customerWhatsApp]').evaluate(el=>el.validity.valid),false);
+  }finally{await page.close()}
+ });
+ await check('Missing design selection stays on step one',async()=>{
+  const page=await openPage(390);
+  try{
+   const f=page.locator('#designConsultForm');
+   await f.locator('.v18-choice button').click();
+   assert.ok(await f.locator('.v18-choice').isVisible());
+   assert.ok(!(await f.locator('.v18-details').isVisible()));
+  }finally{await page.close()}
+ });
+ await check('Catalogue connection failure shows honest offline fallback',async()=>{
+  const page=await browser.newPage({viewport:{width:390,height:800}});
+  try{
+   await page.route('**/data/catalog-v11.json',r=>r.abort('failed'));
+   await page.goto(base,{waitUntil:'domcontentloaded'});
+   await page.locator('#catalogLoadError').waitFor({state:'visible'});
+   assert.ok((await page.locator('#catalogCards').innerText()).includes('Hubungi WhatsApp'));
+  }finally{await page.close()}
+ });
+ await check('Official SEO files and media links',async()=>{
+  const page=await openPage(1440);
+  try{
+   for(const path of ['robots.txt','sitemap.xml']){
+    const response=await page.request.get(new URL(path,base).href);
+    assert.equal(response.status(),200,path);
+   }
+   assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://hizvena-id.hizryabdilah23.workers.dev/');
+   const hrefs=await page.locator('.social-connect-card').evaluateAll(xs=>xs.map(x=>x.href));
+   assert.ok(hrefs.some(x=>x.includes('instagram.com/hizvena.id')));
+   assert.ok(hrefs.some(x=>x.includes('tiktok.com/@hizvena_id')));
+   assert.ok(hrefs.some(x=>x.includes('youtube.com/@hizvena_id')));
+   assert.ok(hrefs.some(x=>x.includes('wa.me/6285169728694')));
+  }finally{await page.close()}
+ });
  await check('Mobile menu opens and Escape closes it',async()=>{
   const page=await openPage(375);
   try{
@@ -102,6 +150,10 @@ try{
    await page.keyboard.press('Escape');
    assert.equal(await page.locator('#menu').getAttribute('aria-expanded'),'false');
   }finally{await page.close()}
+ });
+ await check('Create visual review screenshots at 390 and 1440 pixels',async()=>{
+  const {mkdirSync}=await import('node:fs');mkdirSync('test-artifacts',{recursive:true});
+  for(const width of [390,1440]){const page=await openPage(width);try{await page.screenshot({path:'test-artifacts/hizvena-v18-'+width+'.png',fullPage:true})}finally{await page.close()}}
  });
 }finally{await browser.close()}
 console.log(JSON.stringify({passed:passes,failed:issues.length,issues},null,2));

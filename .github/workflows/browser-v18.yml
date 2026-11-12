@@ -28,3 +28,11 @@ jobs:
           exit 1
       - name: Run real Chromium responsive and customer journey tests
         run: node tests/browser-v18.mjs
+      - name: Upload browser screenshots for design review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hizvena-v18-browser-screenshots
+          path: test-artifacts/*.png
+          if-no-files-found: ignore
+          retention-days: 14
