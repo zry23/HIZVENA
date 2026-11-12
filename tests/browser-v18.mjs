@@ -77,7 +77,7 @@ try{
  await check('Academic wizard, validation and review',async()=>{
   const page=await openPage(768);
   try{
-   await page.locator('#catalogQuery').fill('Diskusi Tuton');
+   await page.locator('#catalogQuery').fill('Diskusi Akademik');
    await page.locator('.catalog-service .btn:not(.secondary)').first().click();
    const form=page.locator('#consultForm');
    assert.ok(await form.locator('.v18-details').isVisible());
@@ -89,7 +89,7 @@ try{
    await form.locator('button[type=submit]').click();
    assert.ok(await page.locator('#orderReviewDialog').evaluate(el=>el.open));
    const summary=await page.locator('#orderReviewData').innerText();
-   assert.ok(summary.includes('Pendampingan Diskusi Tuton UT'),summary);
+   assert.ok(summary.includes('Pendampingan Diskusi Akademik (UT/PTN/PTS)'),summary);
    await page.locator('#orderReviewEdit').click();
    assert.equal(await form.locator('#customerName').inputValue(),'Pelanggan Akademik');
   }finally{await page.close()}
