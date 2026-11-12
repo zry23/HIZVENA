@@ -1,0 +1,45 @@
+name: HIZVENA brand-only customer URL (GitHub Pages)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'assets/**'
+      - 'data/**'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - '.github/workflows/brand-only-pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: hizvena-brand-only-pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Build public-only static artifact
+        shell: bash
+        run: |
+          mkdir -p _public
+          cp index.html robots.txt sitemap.xml _public/
+          cp -R assets data _public/
+          printf 'HIZVENA static site only: no private PDFs or secrets included.\n'
+          if find _public -type f -iname '*.pdf' | grep .; then
+            echo "Public PDFs are not allowed" >&2
+            exit 1
+          fi
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _public
+      - id: deployment
+        uses: actions/deploy-pages@v4
