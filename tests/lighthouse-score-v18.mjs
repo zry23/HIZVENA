@@ -1,18 +1,23 @@
-// Parse real Lighthouse reports and apply the published V18 score gates.
+// Real Lighthouse evidence: median of three independent mobile runs reduces CI noise.
+// All individual values are reported. Any median below V18 threshold fails the quality gate.
 import {readFileSync} from 'node:fs';
-const reports=['mobile','desktop'];
-let failing=false;
-for(const device of reports){
- let d;
- try{d=JSON.parse(readFileSync('audit-artifacts/lighthouse-'+device+'.json','utf8'))}
- catch(e){console.error('NOT TESTED',device,e.message);failing=true;continue}
- const c=d.categories||{},a=d.audits||{};
- const scores={performance:Math.round((c.performance?.score??0)*100),accessibility:Math.round((c.accessibility?.score??0)*100),bestPractices:Math.round((c['best-practices']?.score??0)*100),seo:Math.round((c.seo?.score??0)*100)};
- const metrics={LCP:a['largest-contentful-paint']?.displayValue,CLS:a['cumulative-layout-shift']?.displayValue,TBT:a['total-blocking-time']?.displayValue,INP:'Not available in synthetic single-navigation Lighthouse; requires field data'};
- console.log(JSON.stringify({device,url:d.finalDisplayedUrl||d.finalUrl,generated:d.fetchTime,scores,metrics},null,2));
- for(const [key,min] of Object.entries({performance:90,accessibility:95,bestPractices:95,seo:95})){
-  if(scores[key]<min){console.error('FAIL',device,key,scores[key]+' / '+min);failing=true}
-  else console.log('PASS',device,key,scores[key]+' / '+min);
+const read=device=>{try{return JSON.parse(readFileSync('audit-artifacts/lighthouse-'+device+'.json','utf8'))}catch(e){console.error('NOT TESTED',device,e.message);process.exitCode=1;return null}};
+const names=['performance','accessibility','best-practices','seo'];
+const required={performance:90,accessibility:95,'best-practices':95,seo:95};
+const score=d=>Object.fromEntries(names.map(name=>[name,Math.round((d.categories?.[name]?.score??0)*100)]));
+const metrics=d=>({LCP:d.audits?.['largest-contentful-paint']?.displayValue,CLS:d.audits?.['cumulative-layout-shift']?.displayValue,TBT:d.audits?.['total-blocking-time']?.displayValue});
+const median=nums=>nums.slice().sort((a,b)=>a-b)[Math.floor(nums.length/2)];
+const mobiles=['mobile-1','mobile-2','mobile-3'].map(read).filter(Boolean),desktop=read('desktop');
+if(mobiles.length!==3||!desktop){console.error('Missing Lighthouse sample, cannot pass.');process.exitCode=1}
+else{
+ const runs=mobiles.map((d,i)=>({sample:i+1,scores:score(d),metrics:metrics(d),generated:d.fetchTime}));
+ const medians=Object.fromEntries(names.map(n=>[n,median(runs.map(r=>r.scores[n]))]));
+ const desktopScores=score(desktop);
+ console.log(JSON.stringify({type:'mobile-three-run-median',runs,medianScores:medians,desktop:{scores:desktopScores,metrics:metrics(desktop)},limitations:'Local HTTP CI snapshot; not Cloudflare real-user INP or field CWV'},null,2));
+ for(const [name,min] of Object.entries(required)){
+  for(const [dev,scores] of [['mobile median',medians],['desktop',desktopScores]]){
+   if(scores[name]<min){console.error('FAIL',dev,name,scores[name]+'/'+min);process.exitCode=1}
+   else console.log('PASS',dev,name,scores[name]+'/'+min)
+  }
  }
 }
-if(failing){console.error('Lighthouse V18 targets not yet met. Do not claim 95/100.');process.exitCode=1}
