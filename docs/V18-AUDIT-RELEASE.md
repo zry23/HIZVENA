@@ -51,3 +51,11 @@ The requested 95/100 is **a target, not a measured score**. Scores for UI/mobile
 - Browser tests cover responsive widths, catalogue filters and prices, both forms, WhatsApp handoff, error states, SEO files and screenshots (for review).
 - Screenshots from the workflow are **test artifacts**, not substitutes for actual marketing portfolio assets.
 - Production deployment remains manual with release gates; no auto-merge when a test fails.
+
+## Frontend V18 release decision — 12 November 2026
+- The operator explicitly authorized publishing V18 and continuing automation.
+- Release is limited to frontend, catalogue and WhatsApp consultation already verified with Chromium; do not claim backend orders or private file uploads.
+- Current release pipeline must keep static checks and Chromium tests on both PR and main push.
+- GitHub merge is not evidence of a completed Cloudflare deployment. Deployment verification must be reported separately.
+- Six verified real portfolio entries, cross-browser Safari/Firefox/Edge, Lighthouse target and Cloudflare staging validation remain outside the verified set. The V18 release must not be described as 95/100 or full Master Prompt compliance.
+- Manual rollback reference: V17 main commit `5d28eb9af67fc6d630e9a271ee4ecc41fc16f814`.
