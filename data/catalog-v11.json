@@ -6,11 +6,11 @@
   "services": [
     {
       "id": "ut-diskusi",
-      "category": "akademik-ut",
-      "name": "Pendampingan Diskusi Tuton UT",
+      "category": "akademik-umum",
+      "name": "Pendampingan Diskusi Akademik (UT/PTN/PTS)",
       "price": "Rp19.000 / mata kuliah",
-      "description": "Bimbingan dan review untuk memahami topik diskusi Tuton.",
-      "scope": "Konsultasi, penjelasan materi, dan umpan balik.",
+      "description": "Konsultasi materi dan pendampingan diskusi untuk mahasiswa UT, PTN, maupun PTS sesuai kebutuhan.",
+      "scope": "Penjelasan materi, arahan argumen, dan review pekerjaan mandiri; bukan jasa menggantikan pengerjaan tugas.",
       "duration": "Dikonfirmasi admin",
       "revision": "Disepakati sebelum pemesanan",
       "originalPrice": "Rp39.000 / mata kuliah",
@@ -29,15 +29,15 @@
     },
     {
       "id": "ut-bank",
-      "category": "akademik-ut",
-      "name": "Latihan UAS HOTS (50 Soal)",
+      "category": "akademik-umum",
+      "name": "Bank Soal Latihan Akademik (UT/PTN/PTS)",
       "price": "Rp29.000 / mata kuliah",
-      "description": "50 soal latihan UAS orisinal untuk membantu persiapan evaluasi akademik; bukan soal ujian resmi.",
-      "scope": "50 soal latihan, bukan soal ujian resmi.",
+      "description": "Latihan soal akademik sesuai mata kuliah UT, PTN, atau PTS dan ketersediaan materi; bukan soal resmi atau bocoran ujian.",
+      "scope": "Latihan soal dan pembahasan sesuai paket yang dikonfirmasi admin; jumlah soal dapat bervariasi.",
       "duration": "Dikonfirmasi admin",
       "revision": "Disepakati sebelum pemesanan",
       "originalPrice": "Rp54.000 / mata kuliah",
-      "promoLabel": "PROMO SPESIAL BANK SOAL UT",
+      "promoLabel": "PROMO SPESIAL BANK SOAL",
       "promoPercent": 46.3
     },
     {

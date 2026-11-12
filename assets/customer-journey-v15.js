@@ -14,6 +14,9 @@ const labels={
 function lookup(name,type){
  const match=services.find(x=>x.name===name&&(type==='academic'?x.category!=='desain':x.category==='desain'));
  if(match)return match;
+ // Preserve legacy manually-selected labels while the two canonical promo names serve all campus types.
+ const legacy={'Diskusi Tuton UT':'ut-diskusi','Bank Soal Latihan UAS HOTS (50 soal)':'ut-bank','Bank Soal Latihan UAS HOTS (50 Soal)':'ut-bank'};
+ if(type==='academic'&&legacy[name])return services.find(x=>x.id===legacy[name])||null;
  return selected?.name===name?selected:null;
 }
 function review(order){

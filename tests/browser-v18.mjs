@@ -77,19 +77,21 @@ try{
  await check('Academic wizard, validation and review',async()=>{
   const page=await openPage(768);
   try{
-   await page.locator('#catalogQuery').fill('Diskusi Tuton');
+   await page.locator('#catalogQuery').fill('Diskusi Akademik');
    await page.locator('.catalog-service .btn:not(.secondary)').first().click();
    const form=page.locator('#consultForm');
    assert.ok(await form.locator('.v18-details').isVisible());
    await form.locator('#customerName').fill('Pelanggan Akademik');
    await form.locator('#customerWhatsApp').fill('081234567892');
+   // General-campus promo requires an explicit campus instead of assuming UT.
+   await form.locator('#campus').fill('Universitas Terbuka');
    await form.locator('#programStudy').fill('Ilmu Komunikasi');
    await form.locator('#semester').selectOption('2');
    await form.locator('#course').fill('Komunikasi Dasar');
    await form.locator('button[type=submit]').click();
    assert.ok(await page.locator('#orderReviewDialog').evaluate(el=>el.open));
    const summary=await page.locator('#orderReviewData').innerText();
-   assert.ok(summary.includes('Pendampingan Diskusi Tuton UT'),summary);
+   assert.ok(summary.includes('Pendampingan Diskusi Akademik (UT/PTN/PTS)'),summary);
    await page.locator('#orderReviewEdit').click();
    assert.equal(await form.locator('#customerName').inputValue(),'Pelanggan Akademik');
   }finally{await page.close()}
