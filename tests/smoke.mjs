@@ -45,7 +45,7 @@ assert.ok(!html.includes('id="faculty"'),'Faculty input should be removed');
 assert.ok(!html.includes('<span aria-hidden="true">*</span>'),'Visible required-field star markers should be removed');
 assert.ok(!formJS.includes('<span aria-hidden="true">*</span>'),'Dynamic required-field stars should be removed');
 assert.ok(!html.includes('class="hero-microproof"'),'Decorative hero symbols should be removed');
-assert.ok(html.includes('Solusi Tepat untuk Kebutuhan'),'Requested hero copy missing');
+assert.ok(html.includes('Solusi Akademik dan Kreatif yang'),'Requested hero copy missing');
 assert.ok(html.includes('data-mode="SEMUA"'),'Missing all-campus tab');
 assert.ok(formJS.includes('state.campuses};'),'All-campus option should cover the full dataset');
 assert.ok(source('assets/customer-journey-v15.js').includes('window.location.href=url;'),'Review flow must open admin WhatsApp');
@@ -55,7 +55,7 @@ assert.equal(domain.requested_domain, 'hizvena.com');
 assert.equal(domain.domain_status, 'requested_not_verified_or_connected');
 console.log('HIZVENA smoke checks passed:', {campusCount,programCount,utCount});
 
-assert.ok(html.includes('Solusi Tepat untuk Kebutuhan'), 'Requested headline');
+assert.ok(html.includes('Solusi Akademik dan Kreatif yang'), 'Requested headline');
 assert.ok(!html.includes('Testimoni segera hadir'), 'No placeholder testimonials');
 assert.ok(html.includes('id="designConsultForm"'), 'Separate design consultation');
 assert.ok(html.includes('id="catalogDialog"'), 'Accessible catalog details');
@@ -119,7 +119,7 @@ assert.ok(html.includes('id="portofolio"'),'V17 portfolio missing');
 assert.ok(html.includes('id="catalogSort"'),'V17 sorting missing');
 assert.ok(source('assets/catalog-v11.js').includes("sort?.addEventListener"),'Sort not wired');
 assert.ok(html.includes('Tiga Langkah Konsultasi'),'V17 process missing');
-assert.ok(html.includes('Karya dan Hasil Layanan'),'Portfolio honest empty state missing');
+assert.ok(html.includes('Portofolio Unggulan'),'Portfolio honest empty state missing');
 assert.ok(html.includes('id="sosial-media"'),'Existing social hub missing');
 
 assert.ok(html.includes("e.key==='Escape'&&nav.classList.contains('open')"),'Mobile Escape close missing');
@@ -152,3 +152,17 @@ assert.ok(journeyJS.includes("encodeURIComponent(lines.join('\\n'))"),'WhatsApp 
 assert.ok(!journeyJS.includes('fetch('),'No unverified backend order submission allowed');
 assert.ok(!journeyJS.includes('localStorage')&&!journeyJS.includes('sessionStorage'),'Do not persist customer details');
 assert.ok(html.includes('id="orderReviewEdit"')&&html.includes('id="orderReviewContinue"'),'Review actions missing');
+
+// V18 progressive UI & data-driven catalogue; no fabricated backend.
+assert.ok(html.includes('Solusi Akademik dan Kreatif yang'),'V18 hero missing');
+assert.ok(html.includes('id="catalogType"'),'Type filter missing');
+assert.ok(html.includes('href="./assets/v18-premium.css"'),'V18 stylesheet missing');
+assert.ok(html.includes('assets/wizard-v18.js'),'Wizard missing');
+assert.ok(html.includes('class="v18-floating-wa"'),'Floating WhatsApp missing');
+assert.ok(html.includes('Terhubung dengan HIZVENA'),'Social header missing');
+assert.ok(source('assets/catalog-v11.js').includes("t==='semua'||x.id===t"),'Canonical type filter inactive');
+assert.ok(source('assets/wizard-v18.js').includes("setup('consultForm','academic','service')"),'Academic wizard missing');
+assert.ok(source('assets/wizard-v18.js').includes("setup('designConsultForm','design','designType')"),'Design wizard missing');
+assert.ok(source('assets/wizard-v18.js').includes("type='button'"),'Wizard buttons must not submit');
+assert.ok(source('assets/customer-journey-v15.js').includes('window.HizvenaWizard?.openDetails'),'Catalogue selection must open details');
+assert.ok(!source('assets/wizard-v18.js').includes('localStorage'),'Wizard must not persist personal information');

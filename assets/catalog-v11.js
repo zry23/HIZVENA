@@ -1,6 +1,6 @@
 /* HIZVENA public catalogue — data driven; no customer records stored */
 (()=>{'use strict';
-const $=id=>document.getElementById(id),list=$('catalogCards'),search=$('catalogQuery'),category=$('catalogCategory'),count=$('catalogCount'),dialog=$('catalogDialog'),sort=$('catalogSort');
+const $=id=>document.getElementById(id),list=$('catalogCards'),search=$('catalogQuery'),category=$('catalogCategory'),count=$('catalogCount'),dialog=$('catalogDialog'),sort=$('catalogSort'),type=$('catalogType'),loadError=$('catalogLoadError');
 if(!list||!dialog)return;
 const categories={'akademik-ut':'Akademik UT','akademik-umum':'Akademik PTN/PTS',desain:'Desain Grafis'};
 const wa=(title,ref='')=>'https://wa.me/6285169728694?text='+encodeURIComponent('Halo Kak Fazry, saya ingin konsultasi layanan HIZVENA.\n\nLayanan: '+title+(ref?'\nReferensi: '+ref:'')+'\n\nMohon informasi cakupan, estimasi waktu, ketentuan revisi, dan harga akhir.');
@@ -8,8 +8,8 @@ const norm=value=>String(value||'').toLocaleLowerCase('id-ID');
 let services=[],activeGroup='semua';
 function element(tag,className,text){const e=document.createElement(tag);if(className)e.className=className;if(text!==undefined)e.textContent=String(text);return e}
 function render(){
-const q=norm(search.value).trim(),c=category.value;
-let matching=services.filter(x=>(activeGroup==='semua'||(activeGroup==='akademik'&&x.category!=='desain')||(activeGroup==='desain'&&x.category==='desain'))&&(c==='semua'||x.category===c)&&(!q||norm(x.name+' '+x.description+' '+x.scope).includes(q)));
+const q=norm(search.value).trim(),c=category.value,t=type?.value||'semua';
+let matching=services.filter(x=>(activeGroup==='semua'||(activeGroup==='akademik'&&x.category!=='desain')||(activeGroup==='desain'&&x.category==='desain'))&&(c==='semua'||x.category===c)&&(t==='semua'||x.id===t)&&(!q||norm(x.name+' '+x.description+' '+x.scope).includes(q)));
 const firstPrice=x=>{const m=String(x.price||'').match(/Rp\s*([\d.]+)/i);return m?Number(m[1].replace(/\./g,'')):Number.POSITIVE_INFINITY};
 if(sort?.value==='harga-asc')matching.sort((a,b)=>firstPrice(a)-firstPrice(b));
 else if(sort?.value==='harga-desc')matching.sort((a,b)=>firstPrice(b)-firstPrice(a));
@@ -38,8 +38,8 @@ function openDetail(svc){
 }
 $('catalogClose').addEventListener('click',()=>dialog.close?dialog.close():dialog.removeAttribute('open'));
 dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close?dialog.close():dialog.removeAttribute('open')});
-search.addEventListener('input',render);sort?.addEventListener('change',render);category.addEventListener('change',()=>{activeGroup='semua';render()});
-document.querySelectorAll('[data-catalog-filter]').forEach(el=>el.addEventListener('click',()=>{const target=el.dataset.catalogFilter;activeGroup=target;category.value=target==='desain'?'desain':'semua';search.value='';render()}));
+search.addEventListener('input',render);type?.addEventListener('change',render);sort?.addEventListener('change',render);category.addEventListener('change',()=>{activeGroup='semua';render()});
+document.querySelectorAll('[data-catalog-filter]').forEach(el=>el.addEventListener('click',()=>{const target=el.dataset.catalogFilter;activeGroup=target;category.value=target==='desain'?'desain':'semua';if(type)type.value='semua';search.value='';render()}));
 const dForm=$('designConsultForm'),dType=$('designType'),dPreview=$('designPreview');
 function submitDesign(event){
  event.preventDefault();if(!dForm.reportValidity())return;
@@ -62,7 +62,9 @@ fetch('./data/catalog-v11.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status)
  services=data.services.filter(x=>x&&x.id&&x.name&&categories[x.category]&&x.price&&x.description&&x.scope&&x.duration&&x.revision);
  window.HizvenaJourney.setServices(services);
  if(!services.length)throw Error('Empty catalog');
+ if(type){for(const svc of services){const option=document.createElement('option');option.value=svc.id;option.textContent=svc.name;type.appendChild(option)}}
+ if(loadError)loadError.hidden=true;
  for(const svc of services.filter(x=>x.category==='desain')){const o=document.createElement('option');o.value=svc.name;o.textContent=svc.name;dType.appendChild(o)}
  render()
-}).catch(()=>{count.textContent='Katalog belum dapat dimuat.';list.replaceChildren(element('p','catalog-empty','Silakan hubungi admin untuk informasi layanan dan harga.'));const link=element('a','btn','Hubungi WhatsApp');link.href=wa('Informasi katalog');list.appendChild(link)});
+}).catch(()=>{if(loadError)loadError.hidden=false;count.textContent='Katalog belum dapat dimuat.';list.replaceChildren(element('p','catalog-empty','Silakan hubungi admin untuk informasi layanan dan harga.'));const link=element('a','btn','Hubungi WhatsApp');link.href=wa('Informasi katalog');list.appendChild(link)});
 })();
