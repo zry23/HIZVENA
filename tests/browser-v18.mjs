@@ -19,7 +19,7 @@ try{
    const page=await openPage(width);
    try{
     const dims=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
-    assert.ok(dims.scroll<=dims.client+2,JSON.stringify(dims));
+    if(dims.scroll>dims.client+2){const offenders=await page.evaluate(()=>[...document.querySelectorAll('body *')].map(e=>({tag:e.tagName,className:String(e.className||'').slice(0,80),id:e.id,right:Math.round(e.getBoundingClientRect().right),width:Math.round(e.getBoundingClientRect().width)})).filter(x=>x.right>document.documentElement.clientWidth+2).sort((a,b)=>b.right-a.right).slice(0,12));throw new Error(JSON.stringify({dims,offenders}))}
     assert.equal(await page.locator('.v18-floating-wa').count(),1);
     assert.equal(await page.locator('.social-connect-card').count(),4);
    }finally{await page.close()}
