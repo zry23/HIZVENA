@@ -3,7 +3,7 @@
 const root=document.getElementById('ut-library');if(!root)return;
 const list=document.getElementById('ut-library-results'),q=document.getElementById('ut-library-query'),year=document.getElementById('ut-library-year'),count=document.getElementById('ut-library-count');
 if(!list||!q||!year||!count)return;
-const message='Halo Admin HIZVENA, saya ingin konsultasi Bank Soal Latihan UAS UT.';
+const message='Halo Admin HIZVENA, saya ingin konsultasi Promo Bank Soal Akademik untuk mahasiswa UT/PTN/PTS.';
 const waFor=doc=>'https://wa.me/6285169728694?text='+encodeURIComponent(message+'\nMata kuliah: '+doc.title+'\nKode: '+doc.courseCode+'\nMohon konfirmasi ketersediaan paket dan harga promo Rp29.000 per mata kuliah.');
 const make=(tag,cls,value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=String(value);return el};
 let items=[];
@@ -11,7 +11,7 @@ function render(){
  const search=q.value.trim().toLocaleLowerCase('id-ID'),period=year.value;
  const found=items.filter(x=>(!period||x.academicYear===period)&&(!search||[x.title,x.courseCode,x.academicYear,x.programStudy,x.category].join(' ').toLocaleLowerCase('id-ID').includes(search)));
  count.textContent=found.length+' materi latihan ditemukan';list.replaceChildren();
- if(!found.length){list.append(make('p','ut-library-state','Tidak ada materi yang sesuai. Coba kode mata kuliah atau hubungi admin untuk informasi koleksi.'));return}
+ if(!found.length){list.append(make('p','ut-library-state','Tidak ada materi yang sesuai. Materi ini belum tampil di katalog. Mahasiswa UT/PTN/PTS dapat berkonsultasi tentang mata kuliah apa pun dengan admin; ketersediaan dikonfirmasi.'));return}
  for(const doc of found){
   const card=make('article','ut-library-item');
   const img=make('img','ut-library-cover');img.src=doc.cover;img.alt='Sampul materi '+doc.title;img.loading='lazy';img.width=128;img.height=174;
