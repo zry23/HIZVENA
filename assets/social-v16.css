@@ -1,0 +1,19 @@
+/* HIZVENA social channel hub — minimal, high-contrast, mobile-first */
+.social-connect{background:#f7f8f6;padding:clamp(54px,6.5vw,92px) 0;scroll-margin-top:98px}
+.social-connect-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:27px}
+.social-connect-heading h2{font-size:clamp(28px,3.2vw,43px);letter-spacing:-.025em;line-height:1.18;color:#172d36;margin:7px 0 13px}
+.social-connect-heading p:not(.eyebrow){max-width:590px;margin:0;color:#52626a;line-height:1.65}
+.social-connect-tagline{flex:none;font-size:12px;font-weight:800;letter-spacing:.16em;color:#177b75;white-space:nowrap;padding-bottom:5px}
+.social-connect-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.social-connect-card{min-width:0;min-height:112px;display:flex;align-items:center;gap:16px;padding:23px 21px;border:1px solid #dce7e3;border-radius:18px;background:#fff;color:#172d36;text-decoration:none;box-shadow:0 3px 12px rgba(23,45,54,.035);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.social-connect-card:hover{transform:translateY(-3px);border-color:#177b75;box-shadow:0 12px 24px rgba(23,45,54,.08)}
+.social-connect-card:focus-visible{outline:3px solid #177b75;outline-offset:3px}
+.social-connect-icon{flex:0 0 48px;width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#eef6f3;color:#177b75}
+.social-connect-icon svg{width:25px;height:25px}
+.social-connect-copy{display:flex;flex-direction:column;gap:3px;min-width:0;line-height:1.4}
+.social-connect-copy strong{font-size:17px;font-weight:750}
+.social-connect-copy>span{font-size:14px;color:#52626a;overflow-wrap:anywhere}
+.social-connect-arrow{margin-left:auto;align-self:flex-start;flex:none;color:#177b75;font-size:20px;line-height:1}
+@media(max-width:950px){.social-connect-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.social-connect-heading{align-items:start;flex-direction:column;gap:9px}}
+@media(max-width:620px){.social-connect-grid{grid-template-columns:1fr;gap:12px}.social-connect-card{min-height:86px;padding:17px 18px;border-radius:15px}.social-connect-icon{flex-basis:44px;width:44px;height:44px}.social-connect-heading{margin-bottom:22px}.social-connect-tagline{font-size:11px}.social-connect{padding:54px 0 64px}}
+@media(prefers-reduced-motion:reduce){.social-connect-card{transition:none}.social-connect-card:hover{transform:none}}
