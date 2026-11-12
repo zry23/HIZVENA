@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hizvena-id.hizryabdilah23.workers.dev/sitemap.xml

@@ -49,6 +49,7 @@ function select(item){
    input.value=item.name;input.dispatchEvent(new Event('change',{bubbles:true}));
   });
  }
+ queueMicrotask(()=>window.HizvenaWizard?.openDetails(design?'design':'academic'));
  const target=$(design?'designConsultForm':'consultForm');
  if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
 }

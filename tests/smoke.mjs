@@ -152,3 +152,17 @@ assert.ok(journeyJS.includes("encodeURIComponent(lines.join('\\n'))"),'WhatsApp 
 assert.ok(!journeyJS.includes('fetch('),'No unverified backend order submission allowed');
 assert.ok(!journeyJS.includes('localStorage')&&!journeyJS.includes('sessionStorage'),'Do not persist customer details');
 assert.ok(html.includes('id="orderReviewEdit"')&&html.includes('id="orderReviewContinue"'),'Review actions missing');
+
+// V18 progressive UI & data-driven catalogue; no fabricated backend.
+assert.ok(html.includes('Solusi Akademik dan Kreatif yang'),'V18 hero missing');
+assert.ok(html.includes('id="catalogType"'),'Type filter missing');
+assert.ok(html.includes('href="./assets/v18-premium.css"'),'V18 stylesheet missing');
+assert.ok(html.includes('assets/wizard-v18.js'),'Wizard missing');
+assert.ok(html.includes('class="v18-floating-wa"'),'Floating WhatsApp missing');
+assert.ok(html.includes('Terhubung dengan HIZVENA'),'Social header missing');
+assert.ok(source('assets/catalog-v11.js').includes("t==='semua'||x.id===t"),'Canonical type filter inactive');
+assert.ok(source('assets/wizard-v18.js').includes("setup('consultForm','academic','service')"),'Academic wizard missing');
+assert.ok(source('assets/wizard-v18.js').includes("setup('designConsultForm','design','designType')"),'Design wizard missing');
+assert.ok(source('assets/wizard-v18.js').includes("type='button'"),'Wizard buttons must not submit');
+assert.ok(source('assets/customer-journey-v15.js').includes('window.HizvenaWizard?.openDetails'),'Catalogue selection must open details');
+assert.ok(!source('assets/wizard-v18.js').includes('localStorage'),'Wizard must not persist personal information');
