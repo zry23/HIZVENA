@@ -17,4 +17,4 @@ jobs:
         with:
           node-version: '22'
       - name: Verify HTML, assets, data and WhatsApp
-        run: node tests/smoke.mjs
+        run: node tests/smoke.mjs && node tests/ut-library-v18-3.mjs
