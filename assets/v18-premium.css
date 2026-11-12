@@ -32,3 +32,13 @@ header nav .btn{white-space:nowrap}
 @media(max-width:620px){.social-connect-grid{grid-template-columns:1fr}.v18-wizard-actions{flex-direction:column;align-items:stretch}.v18-wizard-actions .btn{width:100%}.v18-floating-wa{bottom:88px;right:12px;padding:10px 14px;min-height:44px}.v18-microcopy{font-size:12px!important}.hero h1{font-size:clamp(30px,9vw,43px)!important}}
 @media(max-width:350px){.v18-microcopy{letter-spacing:0}.v18-microcopy span{margin:0 2px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* True fixes for 320–390px catalog labels and 1024px header, verified by Chromium. */
+.catalog-controls .sr-only{position:absolute!important;width:1px!important;max-width:1px!important;min-width:0!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;white-space:nowrap!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important}
+@media(min-width:801px) and (max-width:1150px){
+ header .nav{position:relative}
+ header .menu{display:inline-flex;align-items:center;justify-content:center;flex:none}
+ header #nav{display:none;position:absolute;top:100%;left:0;right:0;width:100%;max-width:100%;background:#fff;padding:17px;flex-direction:column;align-items:stretch;gap:10px;border:1px solid #e4e8ea;border-radius:0 0 14px 14px;box-shadow:0 15px 25px #14263b1c}
+ header #nav.open{display:flex}
+ header #nav a{min-height:44px;display:flex;align-items:center;padding:7px 10px}
+}
