@@ -35,3 +35,18 @@ The independent GitHub workflows `lighthouse-v18.yml` and `security-v18.yml` gen
 
 ## Finishing items deferred
 Portfolio approval, testimonials and design polish may be addressed later. The current scope is Lighthouse, security and backend readiness.
+
+## Measured audit evidence, 12 November 2026
+
+Lighthouse snapshot test of local V18 over HTTP served inside GitHub Actions, using Chrome/Lighthouse (not field or live Cloudflare measurements). Initial result: mobile P90/A95/BP100/SEO100, LCP ~2.9s; desktop P100/A95/BP100/SEO100. After priority preload of the real hero background asset: mobile P95/A95/BP100/SEO100, LCP ~2.5s, CLS 0, TBT 180ms; desktop P100/A95/BP100/SEO100, LCP ~0.8s, CLS 0.002, TBT 0ms. INP unavailable from this lab audit.
+
+- Improved test: https://github.com/zry23/HIZVENA/actions/runs/43154792336
+- Static regression: https://github.com/zry23/HIZVENA/actions/runs/43154792316
+- Real Chromium journey: https://github.com/zry23/HIZVENA/actions/runs/43154792300
+- Security baseline: https://github.com/zry23/HIZVENA/actions/runs/43154792345
+
+**Security review:** No CRITICAL/HIGH signatures detected in scoped source/anonymous public HTML scan; four REVIEW findings for missing HTTP response headers (CSP, X-Content-Type-Options, Referrer-Policy, HSTS). This is not a full authenticated audit. The added HTML referrer meta is a limited client-side mitigation and does **not** constitute an HTTP Referrer-Policy response header. Remediation needs Cloudflare deployment configuration verification. Track https://github.com/zry23/HIZVENA/issues/13.
+
+**Backend:** Floot project resources blocked by account daily action quota today. No endpoint contract/authorization evidence; safe integration gate remains **BLOCKED**, tracked in https://github.com/zry23/HIZVENA/issues/12.
+
+QA workflows now re-run after main pushes, on pull requests, manually, and weekly. Lighthouse score thresholds remain Performance >=90 and Accessibility/Best Practices/SEO >=95 as stated in V18 spec. These reports are per-run single samples and not a field-data certification.
