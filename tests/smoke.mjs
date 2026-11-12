@@ -125,3 +125,30 @@ assert.ok(html.includes('id="sosial-media"'),'Existing social hub missing');
 assert.ok(html.includes("e.key==='Escape'&&nav.classList.contains('open')"),'Mobile Escape close missing');
 assert.ok(html.includes("document.addEventListener('pointerdown'"),'Mobile outside-click close missing');
 assert.ok(html.includes('aria-controls="nav"'),'Mobile menu control relationship missing');
+
+// Final production-release gate: official catalogue and WhatsApp consultation.
+// Validate every service record and preserve exact source prices: no frontend-generated prices.
+const canonicalCatalog=JSON.parse(source('data/catalog-v11.json'));
+const ids=canonicalCatalog.services.map(x=>x.id);
+assert.equal(ids.length,12,'Unexpected number of official catalogue services');
+assert.equal(new Set(ids).size,ids.length,'Duplicate official service IDs');
+assert.ok(canonicalCatalog.services.every(x=>/^Rp[\\d.\s–/-]+(?:mata kuliah|slide)?$/.test(x.price)),'Malformed advertised price');
+assert.ok(canonicalCatalog.services.every(x=>['akademik-ut','akademik-umum','desain'].includes(x.category)),'Unrecognized service category');
+assert.ok(canonicalCatalog.services.every(x=>x.name.length>3&&x.scope&&x.duration&&x.revision),'Missing essential service terms');
+const catalogScript=source('assets/catalog-v11.js');
+assert.ok(catalogScript.includes("element('p','catalog-service-price',svc.price)"),'Price must come from canonical service JSON');
+assert.ok(catalogScript.includes("price:selected?.price||'Harga dikonfirmasi admin'"),'Design summary must not invent price');
+const academicScript=source('assets/directory-v8.js');
+assert.ok(academicScript.includes("price:selected?.price||'Harga dikonfirmasi admin'"),'Academic summary must not invent price');
+assert.ok(catalogScript.includes("const selected=services.find(x=>x.category==='desain'&&x.name===type)"),'Design selection mapping missing');
+assert.ok(academicScript.includes("const selected=window.HizvenaJourney.lookup(service.value,'academic')"),'Academic selection mapping missing');
+assert.ok(academicScript.includes('if(!form.reportValidity())return;'),'Academic validation gate missing');
+assert.ok(catalogScript.includes('if(!dForm.reportValidity())return;'),'Design validation gate missing');
+assert.ok(academicScript.includes('Nomor WhatsApp Indonesia tidak valid.'),'Academic WA validation missing');
+assert.ok(catalogScript.includes('Masukkan nomor WhatsApp Indonesia yang valid.'),'Design WA validation missing');
+assert.ok(journeyJS.includes("window.location.href=url"),'Review must open WhatsApp only after button click');
+assert.ok(journeyJS.includes("'https://wa.me/6285169728694?text='"),'Wrong official admin WhatsApp');
+assert.ok(journeyJS.includes("encodeURIComponent(lines.join('\\n'))"),'WhatsApp message must be URL-encoded');
+assert.ok(!journeyJS.includes('fetch('),'No unverified backend order submission allowed');
+assert.ok(!journeyJS.includes('localStorage')&&!journeyJS.includes('sessionStorage'),'Do not persist customer details');
+assert.ok(html.includes('id="orderReviewEdit"')&&html.includes('id="orderReviewContinue"'),'Review actions missing');
