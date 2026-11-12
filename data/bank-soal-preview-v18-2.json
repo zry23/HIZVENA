@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "updated": "2026-11-12",
+  "visibility": "cover-only",
+  "documents": [
+    {
+      "id": "fsik4107-psikologi-komunikasi",
+      "serviceId": "ut-bank",
+      "title": "Bank Soal Latihan UAS — Psikologi Komunikasi",
+      "courseCode": "FSIK4107",
+      "academicYear": "2026/2027",
+      "questionCount": 50,
+      "pages": 26,
+      "format": "PDF",
+      "cover": "./assets/cover-fsik4107.svg",
+      "downloadPublic": false,
+      "note": "50 soal latihan orisinal, kunci jawaban dan pembahasan; bukan soal resmi atau bocoran UAS Universitas Terbuka. File PDF lengkap tidak tersedia pada website publik."
+    }
+  ]
+}
