@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "currency": "IDR",
   "notes": "Data katalog dapat diubah pada file JSON oleh pengelola GitHub yang berwenang. Tidak tersedia panel admin publik.",
   "services": [
@@ -12,7 +12,10 @@
       "description": "Bimbingan dan review untuk memahami topik diskusi Tuton.",
       "scope": "Konsultasi, penjelasan materi, dan umpan balik.",
       "duration": "Dikonfirmasi admin",
-      "revision": "Disepakati sebelum pemesanan"
+      "revision": "Disepakati sebelum pemesanan",
+      "originalPrice": "Rp39.000 / mata kuliah",
+      "promoLabel": "PROMO SPESIAL AJARAN BARU",
+      "promoPercent": 51.3
     },
     {
       "id": "ut-tugas",
@@ -29,10 +32,13 @@
       "category": "akademik-ut",
       "name": "Latihan UAS HOTS (50 Soal)",
       "price": "Rp29.000 / mata kuliah",
-      "description": "Paket latihan untuk membantu persiapan evaluasi akademik.",
+      "description": "50 soal latihan UAS orisinal untuk membantu persiapan evaluasi akademik; bukan soal ujian resmi.",
       "scope": "50 soal latihan, bukan soal ujian resmi.",
       "duration": "Dikonfirmasi admin",
-      "revision": "Disepakati sebelum pemesanan"
+      "revision": "Disepakati sebelum pemesanan",
+      "originalPrice": "Rp54.000 / mata kuliah",
+      "promoLabel": "PROMO SPESIAL BANK SOAL UT",
+      "promoPercent": 46.3
     },
     {
       "id": "ut-paket",

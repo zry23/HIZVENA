@@ -18,7 +18,9 @@ count.textContent=matching.length+' layanan ditemukan';list.replaceChildren();
 if(!matching.length){list.append(element('p','catalog-empty','Tidak ada layanan yang cocok. Coba kata kunci lain.'));return}
 for(const svc of matching){
  const article=element('article','card catalog-service');
- article.append(element('p','catalog-service-category',categories[svc.category]||'Layanan'),element('h3','',svc.name),element('p','catalog-service-price',svc.price),element('p','catalog-service-description',svc.description),element('p','catalog-service-scope','Cakupan: '+svc.scope),element('p','catalog-service-duration','Estimasi: '+svc.duration));
+ article.append(element('p','catalog-service-category',categories[svc.category]||'Layanan'),element('h3','',svc.name));
+ if(svc.promoLabel&&svc.originalPrice){article.append(element('p','ut-promo-label',svc.promoLabel));const oldPrice=element('p','ut-promo-old',svc.originalPrice);article.append(oldPrice)}
+ article.append(element('p','catalog-service-price',svc.price),element('p','catalog-service-description',svc.description),element('p','catalog-service-scope','Cakupan: '+svc.scope),element('p','catalog-service-duration','Estimasi: '+svc.duration));
  const actions=element('div','catalog-service-actions');
  const details=element('button','btn secondary','Lihat Detail');details.type='button';details.addEventListener('click',()=>openDetail(svc));
  const contact=element('button','btn','Pilih Layanan');contact.type='button';contact.addEventListener('click',()=>window.HizvenaJourney.select(svc));
