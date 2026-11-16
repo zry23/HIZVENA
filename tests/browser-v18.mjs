@@ -136,7 +136,7 @@ try{
     const response=await page.request.get(new URL(path,base).href);
     assert.equal(response.status(),200,path);
    }
-   assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://hizvena-id.hizryabdilah23.workers.dev/');
+   assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://hizvena.pages.dev/');
    const hrefs=await page.locator('.social-connect-card').evaluateAll(xs=>xs.map(x=>x.href));
    assert.ok(hrefs.some(x=>x.includes('instagram.com/hizvena.id')));
    assert.ok(hrefs.some(x=>x.includes('tiktok.com/@hizvena_id')));
