@@ -1,0 +1,32 @@
+name: HIZVENA import approved owner portfolio images
+on:
+  push:
+    branches: [feature/v18-5-publish-13-portfolio-images]
+    paths:
+      - 'scripts/import-v18-5-portfolio.mjs'
+      - '.github/workflows/import-v18-5-portfolio.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-owner-artwork:
+    if: github.repository == 'zry23/HIZVENA'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch 13 supplied images and verify SHA-256 checksums
+        run: node scripts/import-v18-5-portfolio.mjs
+      - name: Verify approval gates and public content
+        run: node tests/portfolio-v18-5.mjs && node tests/ut-library-v18-3.mjs && node tests/smoke.mjs
+      - name: Commit image binaries and approved manifest on feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/portfolio/*.webp data/portfolio-v18-5.json
+          git diff --cached --quiet || (git commit -m "Import 13 approved portfolio concepts" && git push origin HEAD:feature/v18-5-publish-13-portfolio-images)
