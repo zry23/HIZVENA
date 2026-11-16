@@ -2,7 +2,7 @@
   "version": "18.5",
   "source": "owner-uploaded-images",
   "updated": "2026-11-16",
-  "reviewNote": "Nama brand pada karya merupakan subjek studi visual, bukan pernyataan afiliasi atau hasil proyek klien terverifikasi. Hanya item publicApproved=true dapat tampil.",
+  "reviewNote": "Dipublikasikan atas permintaan pemilik yang mengunggah 13 karya. Semua karya portofolio ditampilkan sebagai contoh/desain konsep; merek yang muncul bukan bukti hubungan bisnis, persetujuan, atau dukungan resmi pihak ketiga. Detail proyek pribadi tidak diungkap.",
   "works": [
     {
       "id": "kabinet-sanjaya-dharma",
@@ -10,9 +10,9 @@
       "category": "Logo & Identitas",
       "description": "Visual identitas organisasi dengan ilustrasi simbolik.",
       "src": "./assets/portfolio/kabinet-sanjaya-dharma.webp",
-      "publicApproved": false,
+      "publicApproved": true,
       "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "fz28-shark",
@@ -20,9 +20,9 @@
       "category": "Logo & Identitas",
       "description": "Konsep logo dan maskot hiu biru.",
       "src": "./assets/portfolio/fz28-shark.webp",
-      "publicApproved": false,
-      "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "publicApproved": true,
+      "featured": true,
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "perska-perpustakaan",
@@ -30,9 +30,9 @@
       "category": "Logo & Identitas",
       "description": "Identitas perpustakaan dengan simbol buku dan obor.",
       "src": "./assets/portfolio/perska-perpustakaan.webp",
-      "publicApproved": false,
+      "publicApproved": true,
       "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "alga-project",
@@ -40,19 +40,19 @@
       "category": "Logo & Identitas",
       "description": "Logo properti minimalis dengan elemen atap.",
       "src": "./assets/portfolio/alga-project.webp",
-      "publicApproved": false,
-      "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "publicApproved": true,
+      "featured": true,
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "matcha-poster",
       "title": "Poster Promosi Minuman Matcha",
       "category": "Poster & Promosi",
-      "description": "Studi visual poster minuman menggunakan merek pihak ketiga; bukan bukti kolaborasi resmi.",
+      "description": "Studi konsep visual portofolio; bukan iklan resmi, klaim promosi aktual, atau bukti kerja sama dengan merek pihak ketiga.",
       "src": "./assets/portfolio/matcha-poster.webp",
-      "publicApproved": false,
+      "publicApproved": true,
       "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "uniforce-studio",
@@ -60,29 +60,29 @@
       "category": "Mockup & Branding",
       "description": "Studi penerapan identitas merek pada mockup studio.",
       "src": "./assets/portfolio/uniforce-studio.webp",
-      "publicApproved": false,
-      "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "publicApproved": true,
+      "featured": true,
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "property-social-grid",
       "title": "Konten Media Sosial Properti",
       "category": "Media Sosial",
-      "description": "Komposisi sembilan materi promosi properti.",
+      "description": "Studi konsep visual portofolio; bukan iklan resmi, klaim promosi aktual, atau bukti kerja sama dengan merek pihak ketiga.",
       "src": "./assets/portfolio/property-social-grid.webp",
-      "publicApproved": false,
-      "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "publicApproved": true,
+      "featured": true,
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "coffee-social-grid",
       "title": "Konten Media Sosial Coffee Shop",
       "category": "Media Sosial",
-      "description": "Komposisi sembilan materi pemasaran kopi dan pastry.",
+      "description": "Studi konsep visual portofolio; bukan iklan resmi, klaim promosi aktual, atau bukti kerja sama dengan merek pihak ketiga.",
       "src": "./assets/portfolio/coffee-social-grid.webp",
-      "publicApproved": false,
-      "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "publicApproved": true,
+      "featured": true,
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "parfum-savoratia",
@@ -90,19 +90,19 @@
       "category": "Poster & Promosi",
       "description": "Studi konsep poster parfum dengan nuansa turquoise.",
       "src": "./assets/portfolio/parfum-savoratia.webp",
-      "publicApproved": false,
-      "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "publicApproved": true,
+      "featured": true,
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "burger-promo",
       "title": "Poster Promosi Burger",
       "category": "Poster & Promosi",
-      "description": "Konsep materi promosi burger dan tipografi.",
+      "description": "Studi konsep visual portofolio; bukan iklan resmi, klaim promosi aktual, atau bukti kerja sama dengan merek pihak ketiga.",
       "src": "./assets/portfolio/burger-promo.webp",
-      "publicApproved": false,
+      "publicApproved": true,
       "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "ajabex-technical",
@@ -110,9 +110,9 @@
       "category": "Logo & Identitas",
       "description": "Konsep identitas teknikal dengan elemen rumah.",
       "src": "./assets/portfolio/ajabex-technical.webp",
-      "publicApproved": false,
+      "publicApproved": true,
       "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "genteng-jatiwangi",
@@ -120,9 +120,9 @@
       "category": "Logo & Identitas",
       "description": "Penerapan identitas usaha atap dan material bangunan.",
       "src": "./assets/portfolio/genteng-jatiwangi.webp",
-      "publicApproved": false,
+      "publicApproved": true,
       "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "reviewStatus": "APPROVED"
     },
     {
       "id": "gwe-brand",
@@ -130,9 +130,9 @@
       "category": "Logo & Identitas",
       "description": "Logo tipografi putih di atas bidang merah.",
       "src": "./assets/portfolio/gwe-brand.webp",
-      "publicApproved": false,
+      "publicApproved": true,
       "featured": false,
-      "reviewStatus": "NEEDS_REVIEW"
+      "reviewStatus": "APPROVED"
     }
   ]
 }
