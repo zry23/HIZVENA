@@ -119,7 +119,7 @@ assert.ok(html.includes('id="portofolio"'),'V17 portfolio missing');
 assert.ok(html.includes('id="catalogSort"'),'V17 sorting missing');
 assert.ok(source('assets/catalog-v11.js').includes("sort?.addEventListener"),'Sort not wired');
 assert.ok(html.includes('Tiga Langkah Konsultasi'),'V17 process missing');
-assert.ok(html.includes('Portofolio Unggulan'),'Portfolio honest empty state missing');
+assert.ok(html.includes('Portofolio Desain &amp; Identitas Kreatif')&&html.includes('id="portfolioEmpty"'),'V18.5 curated portfolio empty state missing');
 assert.ok(html.includes('id="sosial-media"'),'Existing social hub missing');
 
 assert.ok(html.includes("e.key==='Escape'&&nav.classList.contains('open')"),'Mobile Escape close missing');
